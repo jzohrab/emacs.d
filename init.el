@@ -52,13 +52,15 @@
 (setq
  org-capture-templates
  '(
-   ("t" "TODO" entry (file+headline "~/Dropbox/org/jz.org" "Collect")
+   ("t" "TODO" entry (file+headline "~/Dropbox/org/inbox.org" "Collect")
     "* TODO %? %^G \n  %U" :empty-lines 1)
-   ("s" "Scheduled TODO" entry (file+headline "~/Dropbox/org/jz.org" "Collect")
+   ("T" "Tickler" entry (file+headline "~/Dropbox/org/tickler.org" "Tickler")
+    "* %i%? \n %U")
+   ("s" "Scheduled TODO" entry (file+headline "~/Dropbox/org/inbox.org" "Collect")
     "* TODO %? %^G \nSCHEDULED: %^t\n  %U" :empty-lines 1)
-   ("d" "Deadline" entry (file+headline "~/Dropbox/org/jz.org" "Collect")
+   ("d" "Deadline" entry (file+headline "~/Dropbox/org/inbox.org" "Collect")
     "* TODO %? %^G \n  DEADLINE: %^t" :empty-lines 1)
-   ("p" "Priority" entry (file+headline "~/Dropbox/org/jz.org" "Collect")
+   ("p" "Priority" entry (file+headline "~/Dropbox/org/inbox.org" "Collect")
     "* TODO [#A] %? %^G \n  SCHEDULED: %^t")
    ("r" "Reviews")
    ("rd" "Daily" entry (file "~/Dropbox/org/daily_reviews.org")
@@ -126,12 +128,28 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
 (setq org-agenda-start-on-weekday nil)
 (setq org-agenda-show-all-dates t)
 
-(setq org-agenda-files (list "~/Dropbox/org"))  ;; All files in directory
+(setq org-agenda-files '("~/Dropbox/org/inbox.org"
+                         "~/Dropbox/org/gtd.org"
+			 "~/Dropbox/org/habits.org"
+                         "~/Dropbox/org/tickler.org"))
+
+;; Allow top-level refiling.  This is trickier using Helm,
+;; see https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html
+(setq org-refile-use-outline-path 'file)
+(setq org-outline-path-complete-in-steps nil)
+(setq org-refile-allow-creating-parent-nodes 'confirm)
+
+(setq org-refile-targets '(("~/Dropbox/org/gtd.org" :maxlevel . 1)
+                           ("~/Dropbox/org/habits.org" :maxlevel . 1)
+                           ("~/Dropbox/org/someday.org" :maxlevel . 1)
+                           ("~/Dropbox/org/reference.org" :maxlevel . 1)
+			   ("~/Dropbox/org/tickler.org" :maxlevel . 1)))
+
 
 (setq org-list-description-max-indent 5)
 (setq org-ellipsis " ▼")
 
-(setq initial-buffer-choice "~/Dropbox/org/jz.org")
+(setq initial-buffer-choice "~/Dropbox/org/gtd.org")
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
