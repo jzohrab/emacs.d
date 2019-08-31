@@ -1,0 +1,16 @@
+# git ignore
+# see https://emacs.stackexchange.com/questions/293/what-should-shouldnt-i-do-when-keeping-emacs-and-emacs-d-in-version-control
+
+# Remove backup files
+*#
+*.
+*.elc
+*~
+.#*
+
+# Other
+auto-save-list/
+bookmarks
+elpa/*
+games/*
+recentf
