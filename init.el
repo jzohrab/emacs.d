@@ -145,6 +145,13 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
                            ("~/Dropbox/org/reference.org" :maxlevel . 1)
 			   ("~/Dropbox/org/tickler.org" :maxlevel . 1)))
 
+;; ref https://orgmode.org/manual/TODO-dependencies.html
+;; if project has the following, open TODOs block subsequent ones:
+;;   :PROPERTIES:
+;;   :ORDERED:  t
+;;   :END:
+(setq org-enforce-todo-dependencies t)
+(setq org-agenda-dim-blocked-tasks 'invisible)
 
 (setq org-list-description-max-indent 5)
 (setq org-ellipsis " ▼")
