@@ -74,49 +74,90 @@
 (require 'org-super-agenda)
 (org-super-agenda-mode)
 
-(setq org-super-agenda-groups
-      '(;; Each group has an implicit boolean OR operator between its selectors.
-	(:name "Today"  ; Optionally specify section name
-	       :time-grid t  ; Items that appear on the time grid
-	       :todo "TODAY")  ; Items that have this TODO keyword
-	(:name "Important"
-	       ;; Single arguments given alone
-	       :tag "bills"
-	       :priority "A")
-	;; Set order of multiple groups at once
-	(:order-multi (2 (:name "Shopping in town"
-				;; Boolean AND group matches items that match all subgroups
-				:and (:tag "shopping" :tag "@town"))
-			 (:name "Food-related"
-				;; Multiple args given in list with implicit OR
-				:tag ("food" "dinner"))
-			 (:name "Personal"
-				:habit t
-				:tag "personal")
-			 (:name "Space-related (non-moon-or-planet-related)"
-				;; Regexps match case-insensitively on the entire entry
-				:and (:regexp ("space" "NASA")
-					      ;; Boolean NOT also has implicit OR between selectors
-					      :not (:regexp "moon" :tag "planet")))))
-	;; Groups supply their own section names when none are given
-	(:todo "WAITING" :order 8)  ; Set order of this section
-	(:todo ("SOMEDAY" "TO-READ" "CHECK" "TO-WATCH" "WATCHING")
-	       ;; Show this group at the end of the agenda (since it has the
-	       ;; highest number). If you specified this group last, items
-	       ;; with these todo keywords that e.g. have priority A would be
-	       ;; displayed in that group instead, because items are grouped
-	       ;; out in the order the groups are listed.
-	       :order 9)
-	(:priority<= "B"
-		     ;; Show this section after "Today" and "Important", because
-		     ;; their order is unspecified, defaulting to 0. Sections
-		     ;; are displayed lowest-number-first.
-		     :order 1)
-	;; After the last group, the agenda will display items that didn't
-	;; match any of these groups, with the default order position of 99
-	))
 
-(setq org-agenda-span 1)
+;; (setq org-super-agenda-groups
+;;       '(
+;; 	(:name "Today" :time-grid t :todo "TODAY")
+;; 	(:name "Habits" :habit t)
+;; 	(:name "Important" :priority "#A")
+
+;; 	(:order-multi
+;; 	 (2
+;; 	  (:name "Shopping in town" :and (:tag "shopping" :tag "@downtown"))
+;; 	  (:name "Food-related" :tag ("food" "dinner"))
+;; 	  )
+;; 	 )
+;; 	(:todo "WAITING" :order 8)
+;; 	(:todo ("SOMEDAY" "TO-READ" "CHECK" "TO-WATCH" "WATCHING") :order 9)
+;; 	(:priority<= "B" :order 1)
+;; 	)
+;;       )
+
+;; (setq org-super-agenda-groups nil)
+
+;; (setq org-agenda-span 1)
+
+;; Ref zaen323 example from
+;; https://github.com/alphapapa/org-super-agenda/blob/master/examples.org
+
+(setq org-agenda-custom-commands
+      '(("z" "Super zaen view"
+         ((agenda "" ((org-agenda-span 'day)
+                      (org-super-agenda-groups
+                       '(
+			 (:name "Today"
+                                :time-grid t
+                                :date today
+                                :todo "TODAY"
+                                :scheduled today
+				:deadline today
+                                :order 1)
+			 (:name "Habits" :habit t :order 2)
+			 (:name "Deadlines" :deadline t :order 100)
+			 ))))
+          (alltodo "" ((org-agenda-overriding-header "")
+                       (org-super-agenda-groups
+                        '((:name "Next actions"
+                                 :todo "NEXT"
+                                 :order 1)
+                          (:name "Important"
+                                 :tag "Important"
+                                 :priority "A"
+                                 :order 6)
+                          (:name "Lesser Importance"
+                                 :priority<= "B"
+                                 :order 7)
+                          (:name "Due Soon"
+                                 :deadline future
+                                 :order 8)
+                          (:name "Overdue"
+                                 :deadline past
+                                 :order 7)
+                          (:name "Habits"
+                                 :habit t
+                                 :order 8)
+                          (:name "Projects"
+                                 :tag "Project"
+                                 :order 14)
+                          (:name "Emacs"
+                                 :tag "Emacs"
+                                 :order 13)
+                          (:name "Research"
+                                 :tag "Research"
+                                 :order 15)
+                          (:name "To read"
+                                 :tag "Read"
+                                 :order 30)
+                          (:name "Waiting"
+                                 :todo "WAITING"
+                                 :order 20)
+                          (:name "trivial"
+                                 :priority<= "C"
+                                 :tag ("Trivial" "Unimportant")
+                                 :todo ("SOMEDAY" )
+                                 :order 90)
+                          ))))))))
+
 
 ;; More capture shortcuts
 ;; ref http://pragmaticemacs.com/emacs/a-shorter-shortcut-to-capture-todo-tasks/
