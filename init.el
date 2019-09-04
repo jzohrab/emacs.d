@@ -74,29 +74,6 @@
 (require 'org-super-agenda)
 (org-super-agenda-mode)
 
-
-;; (setq org-super-agenda-groups
-;;       '(
-;; 	(:name "Today" :time-grid t :todo "TODAY")
-;; 	(:name "Habits" :habit t)
-;; 	(:name "Important" :priority "#A")
-
-;; 	(:order-multi
-;; 	 (2
-;; 	  (:name "Shopping in town" :and (:tag "shopping" :tag "@downtown"))
-;; 	  (:name "Food-related" :tag ("food" "dinner"))
-;; 	  )
-;; 	 )
-;; 	(:todo "WAITING" :order 8)
-;; 	(:todo ("SOMEDAY" "TO-READ" "CHECK" "TO-WATCH" "WATCHING") :order 9)
-;; 	(:priority<= "B" :order 1)
-;; 	)
-;;       )
-
-;; (setq org-super-agenda-groups nil)
-
-;; (setq org-agenda-span 1)
-
 ;; Ref zaen323 example from
 ;; https://github.com/alphapapa/org-super-agenda/blob/master/examples.org
 
