@@ -53,15 +53,15 @@
 (setq
  org-capture-templates
  '(
-   ("t" "TODO" entry (file+headline "~/Dropbox/org/inbox.org" "Collect")
+   ("t" "TODO" entry (file "~/Dropbox/org/inbox.org")
     "* TODO %? %^G \n  %U" :empty-lines 1)
-   ("T" "Tickler" entry (file+headline "~/Dropbox/org/tickler.org" "Tickler")
+   ("T" "Tickler" entry (file "~/Dropbox/org/tickler.org")
     "* %i%? \n %U")
-   ("s" "Scheduled TODO" entry (file+headline "~/Dropbox/org/inbox.org" "Collect")
+   ("s" "Scheduled TODO" entry (file "~/Dropbox/org/inbox.org")
     "* TODO %? %^G \nSCHEDULED: %^t\n  %U" :empty-lines 1)
-   ("d" "Deadline" entry (file+headline "~/Dropbox/org/inbox.org" "Collect")
+   ("d" "Deadline" entry (file "~/Dropbox/org/inbox.org")
     "* TODO %? %^G \n  DEADLINE: %^t" :empty-lines 1)
-   ("p" "Priority" entry (file+headline "~/Dropbox/org/inbox.org" "Collect")
+   ("p" "Priority" entry (file "~/Dropbox/org/inbox.org")
     "* TODO [#A] %? %^G \n  SCHEDULED: %^t")
    ("r" "Reviews")
    ("rd" "Daily" entry (file "~/Dropbox/org/daily_reviews.org")
