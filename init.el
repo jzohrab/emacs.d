@@ -105,15 +105,16 @@
          ((agenda "" ((org-agenda-span 'day)
                       (org-super-agenda-groups
                        '(
+			 (:name "Schedule" :time-grid t :order 1)
+			 (:name "Habits" :habit t :order 3)
 			 (:name "Today"
                                 :time-grid t
                                 :date today
                                 :todo "TODAY"
                                 :scheduled today
 				:deadline today
-                                :order 1)
-			 (:name "Habits" :habit t :order 2)
-			 (:name "Deadlines" :deadline t :order 100)
+                                :order 2)
+			 (:name "Upcoming deadlines" :deadline t :order 100)
 			 ))))
           (alltodo "" ((org-agenda-overriding-header "")
                        (org-super-agenda-groups
