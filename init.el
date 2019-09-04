@@ -188,7 +188,13 @@
 (setq org-list-description-max-indent 5)
 (setq org-ellipsis " ▼")
 
-(setq initial-buffer-choice "~/Dropbox/org/gtd.org")
+(setq initial-buffer-choice
+      (lambda ()
+	(org-agenda nil "z")
+	(delete-other-windows)
+	(get-buffer "*Org Agenda*")
+	)
+      )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
