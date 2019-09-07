@@ -6,7 +6,7 @@
  '(org-modules
    (quote
     (org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m)))
- '(package-selected-packages (quote (org-super-agenda helm))))
+ '(package-selected-packages (quote (org-journal org-super-agenda helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -34,6 +34,10 @@
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 (add-hook 'org-mode-hook 'visual-line-mode)
+
+;; Journaling
+(setq org-journal-dir "~/Dropbox/org/journal/")
+(require 'org-journal)
 
 ;; Habits
 (setq org-habit-show-habits-only-for-today t)
