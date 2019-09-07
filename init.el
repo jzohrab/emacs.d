@@ -188,6 +188,10 @@
 (setq org-list-description-max-indent 5)
 (setq org-ellipsis " ▼")
 
+;; Resetting checkboxes when done
+;; https://orgmode.org/worg/org-contrib/org-checklist.html
+(require 'org-checklist)
+
 (setq initial-buffer-choice
       (lambda ()
 	(org-agenda nil "z")
