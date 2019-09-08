@@ -39,6 +39,8 @@
 (setq org-journal-dir "~/Dropbox/org/journal/")
 (require 'org-journal)
 
+(setq org-tag-alist '(("@computer" . ?c) ("@guitar" . ?g) ("@phone" . ?p)))
+
 ;; Habits
 (setq org-habit-show-habits-only-for-today t)
 (setq org-habit-show-all-today nil)
