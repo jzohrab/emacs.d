@@ -6,7 +6,7 @@
  '(org-modules
    (quote
     (org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m)))
- '(package-selected-packages (quote (org-journal org-super-agenda helm))))
+ '(package-selected-packages (quote (org-gcal org-journal org-super-agenda helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -29,6 +29,24 @@
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ORG MODE
+
+;; org-gcal sync
+;; ref https://cestlaz.github.io/posts/using-emacs-26-gcal/
+;; Manually sync the calendar with C-cg 
+
+(require 'org-gcal)
+
+;; Storing my creds in a secret file so I don't commit them here.
+(require 'json)
+(defun get-gcal-config-value (key)
+  "Return the value of the json file gcal_secret for key"
+  (cdr (assoc key (json-read-file "~/.emacs.d/gcal-secret.json")))
+  )
+
+(setq org-gcal-client-id (get-gcal-config-value 'org-gcal-client-id)
+      org-gcal-client-secret (get-gcal-config-value 'org-gcal-client-secret)
+      org-gcal-file-alist '(("jzohrab@gmail.com" . "~/Dropbox/org/schedule.org")))
+
 
 ;; https://github.com/sabof/org-bullets
 (require 'org-bullets)
@@ -88,7 +106,7 @@
          ((agenda "" ((org-agenda-span 'day)
                       (org-super-agenda-groups
                        '(
-			 (:name "Schedule" :time-grid t :order 1)
+			 (:name "Schedule (C-c g to refresh google cal data, then g)" :time-grid t :order 1)
 			 (:name "Habits" :habit t :order 3)
 			 (:name "Today"
                                 :time-grid t
@@ -169,7 +187,8 @@
 (setq org-agenda-files '("~/Dropbox/org/inbox.org"
                          "~/Dropbox/org/gtd.org"
 			 "~/Dropbox/org/habits.org"
-                         "~/Dropbox/org/tickler.org"))
+                         "~/Dropbox/org/tickler.org"
+			 "~/Dropbox/org/schedule.org"))
 
 ;; Allow top-level refiling.  This is trickier using Helm,
 ;; see https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html
@@ -212,7 +231,7 @@
 ;; keybindings
 (global-set-key "\C-ch" 'query-replace)
 (global-set-key "\C-cr" 'query-replace-regexp)
-
+(global-set-key "\C-cg" 'org-gcal-sync)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

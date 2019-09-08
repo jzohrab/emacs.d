@@ -14,3 +14,8 @@ bookmarks
 elpa/*
 games/*
 recentf
+
+# gcal syncing
+.DS_Store
+gcal-secret.json
+org-gcal/
