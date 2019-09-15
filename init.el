@@ -47,6 +47,17 @@
       org-gcal-client-secret (get-gcal-config-value 'org-gcal-client-secret)
       org-gcal-file-alist '(("jzohrab@gmail.com" . "~/Dropbox/org/schedule.org")))
 
+(defun jz/org-gcal-sync ()
+  "Replace existing schedule file with blank, and then resync"
+  (write-region "" nil "~/Dropbox/org/schedule.org")
+  (org-gcal-sync)
+  )
+
+(global-set-key "\C-cg" 'jz/org-gcal-sync)
+
+
+
+
 
 ;; https://github.com/sabof/org-bullets
 (require 'org-bullets)
@@ -231,7 +242,7 @@
 ;; keybindings
 (global-set-key "\C-ch" 'query-replace)
 (global-set-key "\C-cr" 'query-replace-regexp)
-(global-set-key "\C-cg" 'org-gcal-sync)
+
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
