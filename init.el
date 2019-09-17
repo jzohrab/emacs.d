@@ -132,7 +132,7 @@
                        (org-super-agenda-groups
                         '((:name "Next actions"
                                  :todo "NEXT"
-                                 :order 1)
+                                 :order 2)
                           (:name "Important"
                                  :tag "Important"
                                  :priority "A"
@@ -163,7 +163,7 @@
                                  :order 30)
                           (:name "Waiting"
                                  :todo "WAITING"
-                                 :order 20)
+                                 :order 1)
                           (:name "trivial"
                                  :priority<= "C"
                                  :tag ("Trivial" "Unimportant")
