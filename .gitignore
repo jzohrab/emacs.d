@@ -19,3 +19,4 @@ recentf
 .DS_Store
 gcal-secret.json
 org-gcal/
+.org-id-locations
