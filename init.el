@@ -190,6 +190,7 @@
 (setq org-agenda-show-all-dates t)
 
 (setq org-agenda-files '("~/Dropbox/org/inbox.org"
+                         "~/Dropbox/org/travel.org"
                          "~/Dropbox/org/gtd.org"
 			 "~/Dropbox/org/habits.org"
                          "~/Dropbox/org/tickler.org"
@@ -202,6 +203,7 @@
 (setq org-refile-allow-creating-parent-nodes 'confirm)
 
 (setq org-refile-targets '(("~/Dropbox/org/gtd.org" :maxlevel . 1)
+                           ("~/Dropbox/org/travel.org" :maxlevel . 1)
                            ("~/Dropbox/org/habits.org" :maxlevel . 1)
                            ("~/Dropbox/org/someday.org" :maxlevel . 1)
                            ("~/Dropbox/org/reference.org" :maxlevel . 1)
