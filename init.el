@@ -50,6 +50,7 @@
 
 (defun jz/org-gcal-sync ()
   "Replace existing schedule file with blank, and then resync"
+  (interactive)
   (write-region "" nil "~/Dropbox/org/schedule.org")
   (org-gcal-sync)
   )
