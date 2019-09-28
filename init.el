@@ -90,6 +90,8 @@
 (setq
  org-capture-templates
  '(
+   ("s" "Someday" entry (file "~/Dropbox/org/someday.org")
+    "* %i%? \n %U")
    ("t" "TODO" entry (file "~/Dropbox/org/inbox.org")
     "* TODO %? \n  %U" :empty-lines 1)
    ("T" "Tickler" entry (file "~/Dropbox/org/tickler.org")
