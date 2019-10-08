@@ -147,15 +147,6 @@
                           (:name "Habits"
                                  :habit t
                                  :order 8)
-                          (:name "Projects"
-                                 :tag "Project"
-                                 :order 14)
-                          (:name "Emacs"
-                                 :tag "Emacs"
-                                 :order 13)
-                          (:name "Research"
-                                 :tag "Research"
-                                 :order 15)
                           (:name "To read"
                                  :tag "Read"
                                  :order 30)
