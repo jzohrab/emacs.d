@@ -71,6 +71,7 @@
 (require 'org-journal)
 
 (setq org-tag-alist '(("@computer" . ?c) ("@guitar" . ?g) ("@phone" . ?p)))
+(setq org-log-into-drawer "LOGBOOK")
 
 ;; Habits
 (setq org-habit-show-habits-only-for-today t)
