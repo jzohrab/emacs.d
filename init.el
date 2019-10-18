@@ -233,6 +233,23 @@
 (global-set-key "\C-ch" 'query-replace)
 (global-set-key "\C-cr" 'query-replace-regexp)
 
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun my/toggle-spanish-characters ()
+    "Enable/disable alt key to allow insert spanish characters."
+    (interactive)
+    (if (eq ns-alternate-modifier 'meta)
+        (progn
+	 (setq ns-alternate-modifier nil)
+	 (message "Spanish chars ON (OPT+e => ´; OPT+n => ~)")
+	 )
+      (progn
+       (setq ns-alternate-modifier 'meta)
+       (message "Spanish chars OFF")
+       )
+    ))
+
+(global-set-key "\C-cs" 'my/toggle-spanish-characters)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
