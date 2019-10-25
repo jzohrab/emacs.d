@@ -118,7 +118,7 @@
                        '(
 			 (:name "Schedule (C-c g to refresh google cal data, then g)" :time-grid t :order 1)
 			 (:name "Habits" :habit t :order 3)
-			 (:name "Today"
+			 (:name "Today (M-x org-revert-all-org-buffers to reload files)"
                                 :time-grid t
                                 :date today
                                 :todo "TODAY"
