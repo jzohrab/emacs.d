@@ -117,13 +117,13 @@
                       (org-super-agenda-groups
                        '(
 			 (:name "Schedule (C-c g to refresh google cal data, then g)" :time-grid t :order 1)
-			 (:name "Habits" :habit t :order 3)
+			 ;; (:name "Habits" :habit t :order 3)
 			 (:name "Today (M-x org-revert-all-org-buffers to reload files)"
-                                :time-grid t
-                                :date today
-                                :todo "TODAY"
+                                :date t
                                 :scheduled today
+				:scheduled past
 				:deadline today
+				:deadline past
                                 :order 2)
 			 (:name "Upcoming deadlines" :deadline t :order 100)
 			 ))))
