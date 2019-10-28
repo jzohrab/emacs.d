@@ -117,7 +117,7 @@
                       (org-super-agenda-groups
                        '(
 			 (:name "Schedule (C-c g to refresh google cal data, then g)" :time-grid t :order 1)
-			 (:order-multi (3 (:name "Money" :tag "monedy")
+			 (:order-multi (3 (:name "Money" :tag "money")
 			 (:name "Guitar" :tag "guitar")
 			 (:name "Exercise" :tag "exercise")
 			 (:name "Flexibility" :tag "flexibility")))
