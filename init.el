@@ -120,6 +120,7 @@
 			 (:order-multi (3 (:name "Money" :tag "money")
 			 (:name "Guitar" :tag "guitar")
 			 (:name "Exercise" :tag "exercise")
+			 (:name "Spanish" :tag "spanish")
 			 (:name "Flexibility" :tag "flexibility")))
 			 (:name "Today (M-x org-revert-all-org-buffers to reload files)"
                                 :date t
@@ -235,6 +236,7 @@
 ;; keybindings
 (global-set-key "\C-ch" 'query-replace)
 (global-set-key "\C-cr" 'query-replace-regexp)
+(global-set-key (kbd "C-x g") 'magit-status)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
