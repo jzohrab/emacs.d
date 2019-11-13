@@ -114,13 +114,14 @@
 ;; https://github.com/alphapapa/org-super-agenda/blob/master/examples.org
 
 (setq org-agenda-custom-commands
-      '(("z" "Super zaen view"
+      '(
+	("z" "Super zaen view"
          ((agenda "" ((org-agenda-span 'day)
                       (org-super-agenda-groups
                        '(
 			 (:name "Schedule (C-c g to refresh google cal data, then g)" :time-grid t :order 1)
 			 (:order-multi (3 (:name "Money" :tag "money")
-			 (:name "Guitar" :tag "guitar")
+;;			 (:name "Guitar" :tag "guitar")
 			 (:name "Exercise" :tag "exercise")
 			 (:name "Spanish" :tag "spanish")
 			 (:name "Flexibility" :tag "flexibility")))
@@ -165,7 +166,81 @@
                                  :tag ("Trivial" "Unimportant")
                                  :todo ("SOMEDAY" )
                                  :order 90)
-                          ))))))))
+                          )))))  ;; end of ((agenda ...
+	 (( org-agenda-files '("~/Dropbox/org/inbox.org"
+                         "~/Dropbox/org/gtd.org"
+			 "~/Dropbox/org/habits.org"
+                         "~/Dropbox/org/tickler.org"
+			 "~/Dropbox/org/schedule.org") ))
+
+	 )  ;; end ("z" "super zaen view"
+
+	("g" "Guitar"
+         ((agenda "" ((org-agenda-span 'day)
+                      (org-super-agenda-groups
+                       '(
+			 (:name "Today (M-x org-revert-all-org-buffers to reload files)"
+                                :date t
+                                :scheduled today
+				:scheduled past
+				:deadline today
+				:deadline past
+                                :order 1)
+			 ))))
+          (alltodo "" ((org-agenda-overriding-header "")
+                       (org-super-agenda-groups
+                        '((:name "Next"
+                                 :todo "NEXT"
+                                 :order 2)
+                          )))))  ;; end of ((agenda ...
+	 (( org-agenda-files '("~/Dropbox/org/guitar.org")))
+	 )  ;; end guitar
+	
+	("p" "Spanish"
+         ((agenda "" ((org-agenda-span 'day)
+                      (org-super-agenda-groups
+                       '(
+			 (:name "Today (M-x org-revert-all-org-buffers to reload files)"
+                                :date t
+                                :scheduled today
+				:scheduled past
+				:deadline today
+				:deadline past
+                                :order 1)
+			 ))))
+          (alltodo "" ((org-agenda-overriding-header "")
+                       (org-super-agenda-groups
+                        '((:name "Next"
+                                 :todo "NEXT"
+                                 :order 2)
+                          )))))  ;; end of ((agenda ...
+	 (( org-agenda-files '("~/Dropbox/org/spanish.org")))
+	 ) ;; end spanish
+	
+ 	("f" "Fitness"
+         ((agenda "" ((org-agenda-span 'day)
+                      (org-super-agenda-groups
+                       '(
+			 (:name "Today (M-x org-revert-all-org-buffers to reload files)"
+                                :date t
+                                :scheduled today
+				:scheduled past
+				:deadline today
+				:deadline past
+                                :order 1)
+			 ))))
+          (alltodo "" ((org-agenda-overriding-header "")
+                       (org-super-agenda-groups
+                        '((:name "Next"
+                                 :todo "NEXT"
+                                 :order 2)
+                          )))))  ;; end of ((agenda ...
+	 (( org-agenda-files '("~/Dropbox/org/fitness.org")))
+
+	 )  ;; end fitness
+	
+	)
+      )
 
 
 ;; More capture shortcuts
