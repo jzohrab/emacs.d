@@ -125,6 +125,7 @@
 			 ;; (:name "Exercise" :tag "exercise")
 			 ;; (:name "Spanish" :tag "spanish")
 			 ;; (:name "Flexibility" :tag "flexibility")))
+			 (:name "Upcoming deadlines" :deadline t :order 100)
 			 (:name "Today (M-x org-revert-all-org-buffers to reload files)"
                                 :date t
                                 :scheduled today
@@ -132,7 +133,6 @@
 				:deadline today
 				:deadline past
                                 :order 2)
-			 (:name "Upcoming deadlines" :deadline t :order 100)
 			 ))))
           (alltodo "" ((org-agenda-overriding-header "")
                        (org-super-agenda-groups
