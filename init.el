@@ -120,12 +120,8 @@
                       (org-super-agenda-groups
                        '(
 			 (:name "Schedule (C-c g to refresh google cal data, then g)" :time-grid t :order 1)
+			 (:name "Upcoming deadlines" :deadline future :order 100)
 			 (:name "Money" :tag "money" :order 2)
-			 ;; (:name "Guitar" :tag "guitar")
-			 ;; (:name "Exercise" :tag "exercise")
-			 ;; (:name "Spanish" :tag "spanish")
-			 ;; (:name "Flexibility" :tag "flexibility")))
-			 (:name "Upcoming deadlines" :deadline t :order 100)
 			 (:name "Today (M-x org-revert-all-org-buffers to reload files)"
                                 :date t
                                 :scheduled today
