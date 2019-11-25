@@ -15,6 +15,9 @@
  ;; If there is more than one, they won't work right.
  '(org-tag ((t (:foreground "green4" :weight bold)))))
 
+;; Start emacsclient so opening other text files via Finder
+;; runs in same emacs session.
+(server-start)
 
 (require 'package)
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
