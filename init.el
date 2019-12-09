@@ -139,6 +139,7 @@
           (alltodo "" ((org-agenda-overriding-header "")
                        (org-super-agenda-groups
                         '(
+			  (:name "Inbox" :file-path ".*inbox.*" :order 1)
 			  (:name "Waiting" :todo "WAITING" :order 1)
 			  (:name "Next actions" :todo "NEXT" :order 2)
                           (:name "Important" :tag "Important" :priority "A" :order 6)
