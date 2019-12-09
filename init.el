@@ -118,112 +118,112 @@
 
 (setq org-agenda-custom-commands
       '(
-	("z" "Super zaen view"
+        ("z" "Super zaen view"
          ((agenda "" ((org-agenda-span 'day)
                       (org-super-agenda-groups
                        '(
-			 (:name "Schedule (C-c g to refresh google cal data, then g)" :time-grid t :order 1)
-			 (:name "Upcoming deadlines" :deadline future :order 100)
-			 (:name "Money" :tag "money" :order 3)
-			 (:name "Guitarra" :tag "guitar" :order 4)
-			 (:name "Español" :tag "spanish" :order 5)
-			 (:name "Ejercicios" :tag "fitness" :order 6)
-			 (:name "Today (M-x org-revert-all-org-buffers to reload files)"
+                         (:name "Schedule (C-c g to refresh google cal data, then g)" :time-grid t :order 1)
+                         (:name "Upcoming deadlines" :deadline future :order 100)
+                         (:name "Money" :tag "money" :order 3)
+                         (:name "Guitarra" :tag "guitar" :order 4)
+                         (:name "Español" :tag "spanish" :order 5)
+                         (:name "Ejercicios" :tag "fitness" :order 6)
+                         (:name "Today (M-x org-revert-all-org-buffers to reload files)"
                                 :date t
                                 :scheduled today
-				:scheduled past
-				:deadline today
-				:deadline past
+                                :scheduled past
+                                :deadline today
+                                :deadline past
                                 :order 2)
-			 ))))
+                         ))))
           (alltodo "" ((org-agenda-overriding-header "")
                        (org-super-agenda-groups
                         '(
-			  (:name "Inbox" :file-path ".*inbox.*" :order 1)
-			  (:name "Waiting" :todo "WAITING" :order 1)
-			  (:name "Next actions" :todo "NEXT" :order 2)
+                          (:name "Inbox" :file-path ".*inbox.*" :order 1)
+                          (:name "Waiting" :todo "WAITING" :order 1)
+                          (:name "Next actions" :todo "NEXT" :order 2)
                           (:name "Important" :tag "Important" :priority "A" :order 6)
                           (:name "Lesser Importance" :priority<= "B" :order 7)
                           (:name "Due Soon" :deadline future :order 8)
                           (:name "Overdue" :deadline past :order 7)
                           (:name "trivial" :priority<= "C" :tag ("Trivial" "Unimportant") :todo ("SOMEDAY" ) :order 90)
                           )))))  ;; end of ((agenda ...
-	 (( org-agenda-files '("~/Dropbox/org/inbox.org"
+         (( org-agenda-files '("~/Dropbox/org/inbox.org"
                          "~/Dropbox/org/gtd.org"
                          "~/Dropbox/org/guitar.org"
-			 "~/Dropbox/org/spanish.org"
-			 "~/Dropbox/org/fitness.org"
-			 "~/Dropbox/org/habits.org"
+                         "~/Dropbox/org/spanish.org"
+                         "~/Dropbox/org/fitness.org"
+                         "~/Dropbox/org/habits.org"
                          "~/Dropbox/org/tickler.org"
-			 "~/Dropbox/org/schedule.org") ))
+                         "~/Dropbox/org/schedule.org") ))
 
-	 )  ;; end ("z" "super zaen view"
+         )  ;; end ("z" "super zaen view"
 
-	("g" "Guitar"
+        ("g" "Guitar"
          ((agenda "" ((org-agenda-span 'day)
                       (org-super-agenda-groups
                        '(
-			 (:name "Today (M-x org-revert-all-org-buffers to reload files)"
+                         (:name "Today (M-x org-revert-all-org-buffers to reload files)"
                                 :date t
                                 :scheduled today
-				:scheduled past
-				:deadline today
-				:deadline past
+                                :scheduled past
+                                :deadline today
+                                :deadline past
                                 :order 1)
-			 ))))
+                         ))))
           (alltodo "" ((org-agenda-overriding-header "")
                        (org-super-agenda-groups
                         '((:name "Next"
                                  :todo "NEXT"
                                  :order 2)
                           )))))  ;; end of ((agenda ...
-	 (( org-agenda-files '("~/Dropbox/org/guitar.org")))
-	 )  ;; end guitar
-	
-	("p" "Spanish"
+         (( org-agenda-files '("~/Dropbox/org/guitar.org")))
+         )  ;; end guitar
+        
+        ("p" "Spanish"
          ((agenda "" ((org-agenda-span 'day)
                       (org-super-agenda-groups
                        '(
-			 (:name "Today (M-x org-revert-all-org-buffers to reload files)"
+                         (:name "Today (M-x org-revert-all-org-buffers to reload files)"
                                 :date t
                                 :scheduled today
-				:scheduled past
-				:deadline today
-				:deadline past
+                                :scheduled past
+                                :deadline today
+                                :deadline past
                                 :order 1)
-			 ))))
+                         ))))
           (alltodo "" ((org-agenda-overriding-header "")
                        (org-super-agenda-groups
                         '((:name "Next"
                                  :todo "NEXT"
                                  :order 2)
                           )))))  ;; end of ((agenda ...
-	 (( org-agenda-files '("~/Dropbox/org/spanish.org")))
-	 ) ;; end spanish
-	
- 	("f" "Fitness"
+         (( org-agenda-files '("~/Dropbox/org/spanish.org")))
+         ) ;; end spanish
+        
+         ("f" "Fitness"
          ((agenda "" ((org-agenda-span 'day)
                       (org-super-agenda-groups
                        '(
-			 (:name "Today (M-x org-revert-all-org-buffers to reload files)"
+                         (:name "Today (M-x org-revert-all-org-buffers to reload files)"
                                 :date t
                                 :scheduled today
-				:scheduled past
-				:deadline today
-				:deadline past
+                                :scheduled past
+                                :deadline today
+                                :deadline past
                                 :order 1)
-			 ))))
+                         ))))
           (alltodo "" ((org-agenda-overriding-header "")
                        (org-super-agenda-groups
                         '((:name "Next"
                                  :todo "NEXT"
                                  :order 2)
                           )))))  ;; end of ((agenda ...
-	 (( org-agenda-files '("~/Dropbox/org/fitness.org")))
+         (( org-agenda-files '("~/Dropbox/org/fitness.org")))
 
-	 )  ;; end fitness
-	
-	)
+         )  ;; end fitness
+        
+        )
       )
 
 
@@ -255,9 +255,9 @@
                          "~/Dropbox/org/guitar.org"
                          "~/Dropbox/org/spanish.org"
                          "~/Dropbox/org/fitness.org"
-			 "~/Dropbox/org/habits.org"
+                         "~/Dropbox/org/habits.org"
                          "~/Dropbox/org/tickler.org"
-			 "~/Dropbox/org/schedule.org"))
+                         "~/Dropbox/org/schedule.org"))
 
 ;; Allow top-level refiling.  This is trickier using Helm,
 ;; see https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html
@@ -272,7 +272,7 @@
                            ("~/Dropbox/org/habits.org" :maxlevel . 1)
                            ("~/Dropbox/org/someday.org" :maxlevel . 1)
                            ("~/Dropbox/org/reference.org" :maxlevel . 1)
-			   ("~/Dropbox/org/tickler.org" :maxlevel . 1)))
+                           ("~/Dropbox/org/tickler.org" :maxlevel . 1)))
 
 ;; ref https://orgmode.org/manual/TODO-dependencies.html
 ;; if project has the following, open TODOs block subsequent ones:
@@ -291,10 +291,10 @@
 
 (setq initial-buffer-choice
       (lambda ()
-	(org-agenda nil "z")
-	(delete-other-windows)
-	(get-buffer "*Org Agenda*")
-	)
+        (org-agenda nil "z")
+        (delete-other-windows)
+        (get-buffer "*Org Agenda*")
+        )
       )
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -312,9 +312,9 @@
     (interactive)
     (if (eq ns-alternate-modifier 'meta)
         (progn
-	 (setq ns-alternate-modifier nil)
-	 (message "Spanish chars ON (OPT+e => ´; OPT+n => ~)")
-	 )
+         (setq ns-alternate-modifier nil)
+         (message "Spanish chars ON (OPT+e => ´; OPT+n => ~)")
+         )
       (progn
        (setq ns-alternate-modifier 'meta)
        (message "Spanish chars OFF")
@@ -327,13 +327,13 @@
 
 
 (defun do-count-words (start end)
-	"Print number of words in the region."
-	(interactive "r")
-	(save-excursion
-		(save-restriction
-			(narrow-to-region start end)
-			(goto-char (point-min))
-			(count-matches "\\sw+"))))
+        "Print number of words in the region."
+        (interactive "r")
+        (save-excursion
+                (save-restriction
+                        (narrow-to-region start end)
+                        (goto-char (point-min))
+                        (count-matches "\\sw+"))))
 (defun wc () (interactive) (message (number-to-string (do-count-words (point-min) (point-max)))))
 (global-set-key "\C-cw" 'wc)
 
