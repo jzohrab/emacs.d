@@ -124,7 +124,10 @@
                        '(
 			 (:name "Schedule (C-c g to refresh google cal data, then g)" :time-grid t :order 1)
 			 (:name "Upcoming deadlines" :deadline future :order 100)
-			 (:name "Money" :tag "money" :order 2)
+			 (:name "Money" :tag "money" :order 3)
+			 (:name "Guitarra" :tag "guitar" :order 4)
+			 (:name "Español" :tag "spanish" :order 5)
+			 (:name "Ejercicios" :tag "fitness" :order 6)
 			 (:name "Today (M-x org-revert-all-org-buffers to reload files)"
                                 :date t
                                 :scheduled today
@@ -162,6 +165,9 @@
                           )))))  ;; end of ((agenda ...
 	 (( org-agenda-files '("~/Dropbox/org/inbox.org"
                          "~/Dropbox/org/gtd.org"
+                         "~/Dropbox/org/guitar.org"
+			 "~/Dropbox/org/spanish.org"
+			 "~/Dropbox/org/fitness.org"
 			 "~/Dropbox/org/habits.org"
                          "~/Dropbox/org/tickler.org"
 			 "~/Dropbox/org/schedule.org") ))
