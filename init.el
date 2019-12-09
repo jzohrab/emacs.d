@@ -140,8 +140,8 @@
                        (org-super-agenda-groups
                         '(
                           (:name "Inbox" :file-path ".*inbox.*" :order 1)
-                          (:name "Waiting" :todo "WAITING" :order 1)
-                          (:name "Next actions" :todo "NEXT" :order 2)
+                          (:name "Waiting" :todo "WAITING" :order 2)
+                          (:name "Next actions" :todo "NEXT" :order 3)
                           (:name "Important" :tag "Important" :priority "A" :order 6)
                           (:name "Lesser Importance" :priority<= "B" :order 7)
                           (:name "Due Soon" :deadline future :order 8)
