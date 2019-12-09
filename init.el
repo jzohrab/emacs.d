@@ -73,7 +73,7 @@
 (setq org-journal-dir "~/Dropbox/org/journal/")
 (require 'org-journal)
 
-(setq org-tag-alist '(("@computer" . ?c) ("@guitar" . ?g) ("@phone" . ?p) ("@sherry" . ?s)))
+(setq org-tag-alist '(("@computer" . ?c) ("@phone" . ?p) ("@sherry" . ?s)))
 (setq org-todo-keywords
       '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "APPT(a)" "|" "DONE(d)" "CANCELLED(c)" "DEFERRED(f)")))
 (setq org-log-into-drawer "LOGBOOK")
