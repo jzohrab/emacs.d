@@ -265,14 +265,14 @@
 (setq org-outline-path-complete-in-steps nil)
 (setq org-refile-allow-creating-parent-nodes 'confirm)
 
-(setq org-refile-targets '(("~/Dropbox/org/gtd.org" :maxlevel . 1)
-                           ("~/Dropbox/org/guitar.org" :maxlevel . 1)
-                           ("~/Dropbox/org/spanish.org" :maxlevel . 1)
-                           ("~/Dropbox/org/fitness.org" :maxlevel . 1)
-                           ("~/Dropbox/org/habits.org" :maxlevel . 1)
-                           ("~/Dropbox/org/someday.org" :maxlevel . 1)
-                           ("~/Dropbox/org/reference.org" :maxlevel . 1)
-                           ("~/Dropbox/org/tickler.org" :maxlevel . 1)))
+(setq org-refile-targets '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
+                           ("~/Dropbox/org/guitar.org" :maxlevel . 3)
+                           ("~/Dropbox/org/spanish.org" :maxlevel . 3)
+                           ("~/Dropbox/org/fitness.org" :maxlevel . 3)
+                           ("~/Dropbox/org/habits.org" :maxlevel . 3)
+                           ("~/Dropbox/org/someday.org" :maxlevel . 3)
+                           ("~/Dropbox/org/reference.org" :maxlevel . 3)
+                           ("~/Dropbox/org/tickler.org" :maxlevel . 3)))
 
 ;; ref https://orgmode.org/manual/TODO-dependencies.html
 ;; if project has the following, open TODOs block subsequent ones:
