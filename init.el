@@ -116,10 +116,13 @@
 ;; Ref zaen323 example from
 ;; https://github.com/alphapapa/org-super-agenda/blob/master/examples.org
 
+;; https://www.masteringemacs.org/article/effective-editing-movement
+;; nav by s-expression: C-M-f, C-M-b
 (setq org-agenda-custom-commands
       '(
         ("z" "Super zaen view"
-         ((agenda "" ((org-agenda-span 'day)
+         (
+	  (agenda "" ((org-agenda-span 'day)
                       (org-super-agenda-groups
                        '(
                          (:name "Schedule (C-c g to refresh google cal data, then g)" :time-grid t :order 1)
@@ -147,7 +150,8 @@
                           (:name "Due Soon" :deadline future :order 8)
                           (:name "Overdue" :deadline past :order 7)
                           (:name "trivial" :priority<= "C" :tag ("Trivial" "Unimportant") :todo ("SOMEDAY" ) :order 90)
-                          )))))  ;; end of ((agenda ...
+                          ))))
+	  )  ;; end of ((agenda ...
          (( org-agenda-files '("~/Dropbox/org/inbox.org"
                          "~/Dropbox/org/gtd.org"
                          "~/Dropbox/org/guitar.org"
