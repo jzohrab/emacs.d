@@ -114,7 +114,7 @@
 
 
 ;; Common agenda layout for major areas (guitar, spanish, fitness)
-(defun jz-common-agenda-command (command description file)
+(defun my-common-agenda-command (command description file)
   `(,command ,description
 	     ((agenda "" ((org-agenda-span 'day)
 			  (org-agenda-overriding-header ,description)
@@ -146,17 +146,11 @@
 ;; nav by s-expression: C-M-f, C-M-b
 (setq org-agenda-custom-commands
       `(
-	;; Ref zaen323 example from
-	;; https://github.com/alphapapa/org-super-agenda/blob/master/examples.org
         ("z" "Master view!"
          (
-	  ;; List bigrocks at the top.
+	  ;; List big rocks, MITs at the top.
 	  ;; https://zenhabits.net/big-rocks-first-double-your-productivity-this-week/
-
-	  ;; Replacing old-style block with org-super-agenda groups
-	  ;; (tags "bigrock" ((org-agenda-overriding-header "Big rocks")))
-	  ;; (tags "MIT" ((org-agenda-overriding-header "Most important")))
-
+	  ;; https://zenhabits.net/purpose-your-day-most-important-task/
           (tags "bigrock|MIT" ((org-agenda-overriding-header "Big Rocks and MITs")
                        (org-super-agenda-groups
                         '(
@@ -191,8 +185,8 @@
                           (:name "Waiting" :todo "WAITING" :order 2)
                           (:name "Next actions" :todo "NEXT" :order 3)
                           ))))
-	  )  ;; end of ((agenda ...
-         (( org-agenda-files '("~/Dropbox/org/inbox.org"
+	  )
+         ((org-agenda-files '("~/Dropbox/org/inbox.org"
                          "~/Dropbox/org/gtd.org"
                          "~/Dropbox/org/guitar.org"
                          "~/Dropbox/org/spanish.org"
@@ -209,9 +203,9 @@
          ((alltodo "" ((org-agenda-overriding-header "Inbox"))))
          ((org-agenda-files '("~/Dropbox/org/inbox.org"))))
 
-	,(jz-common-agenda-command "g" "Guitar" "~/Dropbox/org/guitar.org")
-	,(jz-common-agenda-command "p" "Spanish" "~/Dropbox/org/spanish.org")
-	,(jz-common-agenda-command "f" "Fitness" "~/Dropbox/org/fitness.org")
+	,(my-common-agenda-command "g" "Guitar" "~/Dropbox/org/guitar.org")
+	,(my-common-agenda-command "p" "Spanish" "~/Dropbox/org/spanish.org")
+	,(my-common-agenda-command "f" "Fitness" "~/Dropbox/org/fitness.org")
 
         )
       )
