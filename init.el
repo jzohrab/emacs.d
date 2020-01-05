@@ -113,18 +113,38 @@
 (require 'org-super-agenda)
 (org-super-agenda-mode)
 
-;; Ref zaen323 example from
-;; https://github.com/alphapapa/org-super-agenda/blob/master/examples.org
+;; Ref https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html
+;;   for more agenda tips.
 
 ;; https://www.masteringemacs.org/article/effective-editing-movement
 ;; nav by s-expression: C-M-f, C-M-b
 (setq org-agenda-custom-commands
       '(
-        ("z" "Super zaen view"
+	;; Ref zaen323 example from
+	;; https://github.com/alphapapa/org-super-agenda/blob/master/examples.org
+        ("z" "Master view!"
          (
+	  ;; List bigrocks at the top.
+	  ;; https://zenhabits.net/big-rocks-first-double-your-productivity-this-week/
+
+	  ;; Replacing old-style block with org-super-agenda groups
+	  ;; (tags "bigrock" ((org-agenda-overriding-header "Big rocks")))
+	  ;; (tags "MIT" ((org-agenda-overriding-header "Most important")))
+
+          (tags "bigrock|MIT" ((org-agenda-overriding-header "Big Rocks and MITs")
+                       (org-super-agenda-groups
+                        '(
+                          (:name "Big rocks" :tag "bigrock" :order 1)
+                          (:name "MITs" :tag "MIT" :order 2)
+                          )
+			)
+		       ))
+
 	  (agenda "" ((org-agenda-span 'day)
+		      (org-agenda-overriding-header "\n======================\n")
                       (org-super-agenda-groups
                        '(
+			 (:name "MITs" :tag "MIT" :order 0)
                          (:name "Schedule (C-c g to refresh google cal data, then g)" :time-grid t :order 1)
                          (:name "Upcoming deadlines" :deadline future :order 100)
                          (:name "Money" :tag "money" :order 3)
@@ -139,10 +159,9 @@
                                 :deadline past
                                 :order 2)
                          ))))
-          (alltodo "" ((org-agenda-overriding-header "")
+          (alltodo "" ((org-agenda-overriding-header "\n===================")
                        (org-super-agenda-groups
                         '(
-                          (:name "Inbox" :file-path ".*inbox.*" :order 1)
                           (:name "Waiting" :todo "WAITING" :order 2)
                           (:name "Next actions" :todo "NEXT" :order 3)
                           (:name "Important" :tag "Important" :priority "A" :order 6)
@@ -161,7 +180,13 @@
                          "~/Dropbox/org/tickler.org"
                          "~/Dropbox/org/schedule.org") ))
 
-         )  ;; end ("z" "super zaen view"
+         )
+
+	("n" todo "NEXT")
+
+	("i" "Inbox"
+         ((alltodo "" ((org-agenda-overriding-header "Inbox"))))
+         ((org-agenda-files '("~/Dropbox/org/inbox.org"))))
 
         ("g" "Guitar"
          ((agenda "" ((org-agenda-span 'day)
@@ -229,6 +254,12 @@
         
         )
       )
+;; eval the above: C-x C-e
+
+;; (setq org-agenda-block-separator "--------\n")
+(setq org-agenda-block-separator nil)
+(setq org-agenda-compact-blocks nil)
+
 
 
 ;; More capture shortcuts
