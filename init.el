@@ -190,11 +190,6 @@
                         '(
                           (:name "Waiting" :todo "WAITING" :order 2)
                           (:name "Next actions" :todo "NEXT" :order 3)
-                          (:name "Important" :tag "Important" :priority "A" :order 6)
-                          (:name "Lesser Importance" :priority<= "B" :order 7)
-                          (:name "Due Soon" :deadline future :order 8)
-                          (:name "Overdue" :deadline past :order 7)
-                          (:name "trivial" :priority<= "C" :tag ("Trivial" "Unimportant") :todo ("SOMEDAY" ) :order 90)
                           ))))
 	  )  ;; end of ((agenda ...
          (( org-agenda-files '("~/Dropbox/org/inbox.org"
