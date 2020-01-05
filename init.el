@@ -108,10 +108,36 @@
    )
 )
 
-
 ;; org-super-agenda
 (require 'org-super-agenda)
 (org-super-agenda-mode)
+
+
+;; Common agenda layout for major areas (guitar, spanish, fitness)
+(defun jz-common-agenda-command (command description file)
+  `(,command ,description
+	     ((agenda "" ((org-agenda-span 'day)
+			  (org-agenda-overriding-header ,description)
+                      (org-super-agenda-groups
+                       '(
+                         (:name "Today (M-x org-revert-all-org-buffers to reload files)"
+                                :date t
+                                :scheduled today
+                                :scheduled past
+                                :deadline today
+                                :deadline past
+                                :order 1)
+                         ))))
+          (alltodo "" ((org-agenda-overriding-header "")
+                       (org-super-agenda-groups
+                        '((:name "Next"
+                                 :todo "NEXT"
+                                 :order 2)
+                          )))))  ;; end of ((agenda ...
+	     ((org-agenda-files '(,file)))
+	     )
+  )
+
 
 ;; Ref https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html
 ;;   for more agenda tips.
@@ -119,7 +145,7 @@
 ;; https://www.masteringemacs.org/article/effective-editing-movement
 ;; nav by s-expression: C-M-f, C-M-b
 (setq org-agenda-custom-commands
-      '(
+      `(
 	;; Ref zaen323 example from
 	;; https://github.com/alphapapa/org-super-agenda/blob/master/examples.org
         ("z" "Master view!"
@@ -188,70 +214,10 @@
          ((alltodo "" ((org-agenda-overriding-header "Inbox"))))
          ((org-agenda-files '("~/Dropbox/org/inbox.org"))))
 
-        ("g" "Guitar"
-         ((agenda "" ((org-agenda-span 'day)
-                      (org-super-agenda-groups
-                       '(
-                         (:name "Today (M-x org-revert-all-org-buffers to reload files)"
-                                :date t
-                                :scheduled today
-                                :scheduled past
-                                :deadline today
-                                :deadline past
-                                :order 1)
-                         ))))
-          (alltodo "" ((org-agenda-overriding-header "")
-                       (org-super-agenda-groups
-                        '((:name "Next"
-                                 :todo "NEXT"
-                                 :order 2)
-                          )))))  ;; end of ((agenda ...
-         (( org-agenda-files '("~/Dropbox/org/guitar.org")))
-         )  ;; end guitar
-        
-        ("p" "Spanish"
-         ((agenda "" ((org-agenda-span 'day)
-                      (org-super-agenda-groups
-                       '(
-                         (:name "Today (M-x org-revert-all-org-buffers to reload files)"
-                                :date t
-                                :scheduled today
-                                :scheduled past
-                                :deadline today
-                                :deadline past
-                                :order 1)
-                         ))))
-          (alltodo "" ((org-agenda-overriding-header "")
-                       (org-super-agenda-groups
-                        '((:name "Next"
-                                 :todo "NEXT"
-                                 :order 2)
-                          )))))  ;; end of ((agenda ...
-         (( org-agenda-files '("~/Dropbox/org/spanish.org")))
-         ) ;; end spanish
-        
-         ("f" "Fitness"
-         ((agenda "" ((org-agenda-span 'day)
-                      (org-super-agenda-groups
-                       '(
-                         (:name "Today (M-x org-revert-all-org-buffers to reload files)"
-                                :date t
-                                :scheduled today
-                                :scheduled past
-                                :deadline today
-                                :deadline past
-                                :order 1)
-                         ))))
-          (alltodo "" ((org-agenda-overriding-header "")
-                       (org-super-agenda-groups
-                        '((:name "Next"
-                                 :todo "NEXT"
-                                 :order 2)
-                          )))))  ;; end of ((agenda ...
-         (( org-agenda-files '("~/Dropbox/org/fitness.org")))
+	,(jz-common-agenda-command "g" "Guitar" "~/Dropbox/org/guitar.org")
+	,(jz-common-agenda-command "p" "Spanish" "~/Dropbox/org/spanish.org")
+	,(jz-common-agenda-command "f" "Fitness" "~/Dropbox/org/fitness.org")
 
-         )  ;; end fitness
-        
         )
       )
 ;; eval the above: C-x C-e
