@@ -275,6 +275,8 @@
 
 (setq org-list-description-max-indent 5)
 (setq org-ellipsis " ▼")
+(setq org-tags-column 0)
+(setq org-agenda-skip-scheduled-if-done t)
 
 ;; Resetting checkboxes when done
 ;; https://orgmode.org/worg/org-contrib/org-checklist.html
