@@ -155,8 +155,8 @@
           (tags "bigrock|MIT" ((org-agenda-overriding-header "Big Rocks and MITs")
                        (org-super-agenda-groups
                         '(
-                          (:name "Big rocks" :tag "bigrock" :order 1)
                           (:name "MITs" :tag "MIT" :order 2)
+                          (:name "Big rocks" :tag "bigrock" :order 1)
                           )
 			)
 		       ))
