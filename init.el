@@ -121,6 +121,7 @@
 			  (org-agenda-overriding-header ,description)
                       (org-super-agenda-groups
                        '(
+			 (:auto-category t)
                          (:name "Today (M-x org-revert-all-org-buffers to reload files)"
                                 :date t
                                 :scheduled today
@@ -129,12 +130,13 @@
                                 :deadline past
                                 :order 1)
                          ))))
-          (alltodo "" ((org-agenda-overriding-header "")
-                       (org-super-agenda-groups
-                        '((:name "Next"
-                                 :todo "NEXT"
-                                 :order 2)
-                          )))))  ;; end of ((agenda ...
+;;          (alltodo "" ((org-agenda-overriding-header "")
+;;                       (org-super-agenda-groups
+;;                        '((:name "Next"
+;;                                 :todo "NEXT"
+;;                                 :order 2)
+;;                          ))))
+	  )  ;; end of ((agenda ...
 	     ((org-agenda-files '(,file)))
 	     )
   )
