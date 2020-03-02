@@ -32,6 +32,11 @@
 (require 'php-mode)
 
 
+;; ido, and adding the 'dot' lets you pick a directory.
+(ido-mode)
+(setq ido-show-dot-for-dired t)
+
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ORG MODE
 
