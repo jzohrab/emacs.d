@@ -14,6 +14,7 @@ bookmarks
 elpa/*
 games/*
 recentf
+ido.last
 
 # gcal syncing
 .DS_Store

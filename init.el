@@ -172,6 +172,7 @@
 		      (org-agenda-overriding-header "\n======================\n")
                       (org-super-agenda-groups
                        '(
+			 (:name "OnHold" :tag "hold" :order 200)
 			 (:name "MITs" :tag "MIT" :order 0)
                          (:name "Schedule (C-c g to refresh google cal data, then g)" :time-grid t :order 1)
                          (:name "Upcoming deadlines" :deadline future :order 100)
