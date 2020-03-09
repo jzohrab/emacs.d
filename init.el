@@ -126,6 +126,7 @@
 			  (org-agenda-overriding-header ,description)
                       (org-super-agenda-groups
                        '(
+			 (:discard (:tag "hold"))
 			 (:auto-category t)
                          (:name "Today (M-x org-revert-all-org-buffers to reload files)"
                                 :date t
@@ -172,14 +173,14 @@
 		      (org-agenda-overriding-header "\n======================\n")
                       (org-super-agenda-groups
                        '(
-			 (:name "OnHold" :tag "hold" :order 200)
+			 (:discard (:tag "hold"))
 			 (:name "MITs" :tag "MIT" :order 0)
                          (:name "Schedule (C-c g to refresh google cal data, then g)" :time-grid t :order 1)
                          (:name "Upcoming deadlines" :deadline future :order 100)
                          (:name "Money" :tag "money" :order 3)
-                         (:name "Guitarra" :tag "guitar" :order 4)
-                         (:name "Español" :tag "spanish" :order 5)
-                         (:name "Ejercicios" :tag "fitness" :order 6)
+                         (:name "Guitarra (C-c a g)" :tag "guitar" :order 4)
+                         (:name "Español (C-c a p)" :tag "spanish" :order 5)
+                         (:name "Ejercicios (C-c a f)" :tag "fitness" :order 6)
                          (:name "Today (M-x org-revert-all-org-buffers to reload files)"
                                 :date t
                                 :scheduled today
@@ -205,6 +206,8 @@
                          "~/Dropbox/org/schedule.org") ))
 
          )
+
+	("h" tags "hold")
 
 	("n" todo "NEXT")
 
