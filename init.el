@@ -103,11 +103,11 @@
  org-capture-templates
  '(
    ("s" "Someday" entry (file "~/Dropbox/org/someday.org")
-    "* %i%? \n %U")
+    "* %i%?")
    ("t" "TODO" entry (file "~/Dropbox/org/inbox.org")
-    "* TODO %? \n  %U" :empty-lines 1)
+    "* TODO %?")
    ("T" "Tickler" entry (file "~/Dropbox/org/tickler.org")
-    "* %i%? \n %U")
+    "* %i%?")
    ("r" "Reviews")
    ("rd" "Daily" entry (file "~/Dropbox/org/daily_reviews.org")
     (file "~/Dropbox/org/templates/daily_review.org"))
