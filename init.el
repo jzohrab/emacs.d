@@ -10,7 +10,7 @@
     (org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m)))
  '(package-selected-packages
    (quote
-    (doom-themes treemacs-persp treemacs-magit treemacs-icons-dired treemacs-projectile use-package treemacs magit org-gcal org-journal org-super-agenda helm))))
+    (org doom-themes treemacs-persp treemacs-magit treemacs-icons-dired treemacs-projectile use-package treemacs magit org-gcal org-journal org-super-agenda helm))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -318,6 +318,7 @@
                           ))))
 	  )
          ((org-agenda-files '("~/Dropbox/org/inbox.org"
+                         "~/Dropbox/org/inbox-remote.org"
                          "~/Dropbox/org/gtd.org"
                          "~/Dropbox/org/guitar.org"
                          "~/Dropbox/org/spanish.org"
@@ -334,7 +335,7 @@
 
 	("i" "Inbox"
          ((alltodo "" ((org-agenda-overriding-header "Inbox"))))
-         ((org-agenda-files '("~/Dropbox/org/inbox.org"))))
+         ((org-agenda-files '("~/Dropbox/org/inbox.org" "~/Dropbox/org/inbox-remote.org"))))
 
 	,(my-common-agenda-command "g" "Guitar" "~/Dropbox/org/guitar.org")
 	,(my-common-agenda-command "p" "Spanish" "~/Dropbox/org/spanish.org")
@@ -374,6 +375,7 @@
 (setq org-agenda-show-all-dates t)
 
 (setq org-agenda-files '("~/Dropbox/org/inbox.org"
+                         "~/Dropbox/org/inbox-remote.org"
                          "~/Dropbox/org/gtd.org"
                          "~/Dropbox/org/guitar.org"
                          "~/Dropbox/org/spanish.org"
@@ -422,6 +424,17 @@
         )
       )
 
+
+(setq org-confirm-babel-evaluate nil)
+(setq org-confirm-shell-link-function nil)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+   (shell . t)
+   )
+ )
+
 ;;;;;;;;;;;;;;;;;
 ;; Javascript
 (setq js-indent-level 2)
@@ -433,6 +446,7 @@
 ;; keybindings
 (global-set-key "\C-ch" 'query-replace)
 (global-set-key "\C-cr" 'query-replace-regexp)
+(global-set-key "\C-cv" 'revert-buffer)
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
