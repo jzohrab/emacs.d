@@ -187,9 +187,10 @@
 
 (global-set-key "\C-cg" 'jz/org-gcal-sync)
 
-
-
-
+;; Reloading buffers periodically, b/c I work with beorg.
+;; https://stackoverflow.com/questions/1480572/
+;;   how-to-have-emacs-auto-refresh-all-buffers-when-files-have-changed-on-disk
+(global-auto-revert-mode t)
 
 ;; https://github.com/sabof/org-bullets
 (require 'org-bullets)
@@ -225,6 +226,8 @@
  '(
    ("s" "Someday" entry (file "~/Dropbox/org/someday.org")
     "* %i%?")
+   ("v" "Vocab" entry (file "~/Dropbox/org/inbox.org")
+    (file "~/Dropbox/org/templates/srs_review.org"))
    ("t" "TODO" entry (file "~/Dropbox/org/inbox.org")
     "* TODO %?")
    ("T" "Tickler" entry (file "~/Dropbox/org/tickler.org")
