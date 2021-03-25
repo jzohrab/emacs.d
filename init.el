@@ -4,10 +4,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(doc-view-continuous t)
+ '(org-adapt-indentation nil)
  '(org-export-backends (quote (ascii html icalendar latex md odt)))
  '(org-modules
    (quote
-    (org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m)))
+    (ol-bbdb ol-bibtex ol-docview ol-gnus org-habit ol-info ol-irc ol-mhe ol-rmail ol-w3m)))
  '(package-selected-packages
    (quote
     (org doom-themes treemacs-persp treemacs-magit treemacs-icons-dired treemacs-projectile use-package treemacs magit org-gcal org-journal org-super-agenda helm))))

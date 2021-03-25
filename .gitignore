@@ -21,3 +21,4 @@ ido.last
 gcal-secret.json
 org-gcal/
 .org-id-locations
+.cache/
