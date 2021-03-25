@@ -226,7 +226,8 @@
  '(
    ("s" "Someday" entry (file "~/Dropbox/org/someday.org")
     "* %i%?")
-   ("v" "Vocab" entry (file "~/Dropbox/org/inbox.org")
+   ("l" "Language")
+   ("lt" "Translation" entry (file "~/Dropbox/org/inbox.org")
     (file "~/Dropbox/org/templates/srs_review.org"))
    ("t" "TODO" entry (file "~/Dropbox/org/inbox.org")
     "* TODO %?")
@@ -491,3 +492,61 @@
 (put 'erase-buffer 'disabled nil)
 (setq backup-directory-alist `(("." . "~/.saves")))
 (setq ispell-program-name "/usr/local/Cellar/ispell/3.3.02/bin/ispell")
+
+
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Reading sentence-by-sentence
+;; from http://kitchingroup.cheme.cmu.edu/blog/2015/06/29/Getting-Emacs-to-read-to-me/
+;; Note hydra is installed with treemacs.
+;; Load the head of the hydra with C-x r h, then s-s-s to speak each sentence.
+
+(defvar words-voice "Daniel" "Mac voice to use for speaking.")
+
+(defun words-speak (&optional text)
+  "Speak word at point or region. Mac only."
+  (interactive)
+  (unless text
+    (setq text (if (use-region-p)
+                   (buffer-substring
+                    (region-beginning) (region-end))
+                 (thing-at-point 'word))))
+  ;; escape some special applescript chars
+  (setq text (replace-regexp-in-string "\\\\" "\\\\\\\\" text))
+  (setq text (replace-regexp-in-string "\"" "\\\\\"" text))
+  (do-applescript
+   (format
+    "say \"%s\" using \"Daniel\""
+    text
+    words-voice)))
+
+(defun mac-say-sentence (&optional arg)
+  "Speak sentence at point. With ARG, go forward ARG sentences."
+  (interactive "P")
+  ;; arg can be (4), 4, "-", or -1. we handle these like this.
+  (let ((newarg))
+    (when arg
+      (setq newarg (cond
+                    ((listp arg)
+                     (round (log (car arg) 4)))
+                    ((and (stringp arg) (string= "-" arg))
+                     ((< 0 arg) arg)
+                     -1)
+                    (t arg)))
+      (forward-sentence newarg)
+      (when (< 0 newarg) (forward-word)))
+    (when (thing-at-point 'sentence)
+      (words-speak (thing-at-point 'sentence)))))
+
+
+(defhydra mac-speak (:color red)
+  "word speak"
+  ("s" (progn (mac-say-sentence) (forward-sentence)(forward-word)) "Next sentence")
+  ("S" (mac-say-sentence -1) "Previous sentence")
+  ("n" (my-org-capture-todo) "Make a note")
+  )
+
+(define-prefix-command 'mac-speak-keymap)
+(define-key mac-speak-keymap (vector ?s) 'mac-say-sentence)
+(define-key mac-speak-keymap (vector ?h) 'mac-speak/body)
+(global-set-key (kbd "\C-xr") 'mac-speak-keymap)
