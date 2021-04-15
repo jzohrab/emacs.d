@@ -5,13 +5,11 @@
  ;; If there is more than one, they won't work right.
  '(doc-view-continuous t)
  '(org-adapt-indentation nil)
- '(org-export-backends (quote (ascii html icalendar latex md odt)))
+ '(org-export-backends '(ascii html icalendar latex md odt))
  '(org-modules
-   (quote
-    (ol-bbdb ol-bibtex ol-docview ol-gnus org-habit ol-info ol-irc ol-mhe ol-rmail ol-w3m)))
+   '(ol-bbdb ol-bibtex ol-docview ol-gnus org-habit ol-info ol-irc ol-mhe ol-rmail ol-w3m))
  '(package-selected-packages
-   (quote
-    (typescript-mode org doom-themes treemacs-persp treemacs-magit treemacs-icons-dired treemacs-projectile use-package treemacs magit org-gcal org-journal org-super-agenda helm))))
+   '(yaml-mode typescript-mode org doom-themes treemacs-persp treemacs-magit treemacs-icons-dired treemacs-projectile use-package treemacs magit org-gcal org-journal org-super-agenda helm)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
