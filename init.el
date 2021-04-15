@@ -203,6 +203,7 @@
 (setq org-tag-alist '(("@computer" . ?c) ("@phone" . ?p) ("@sherry" . ?s)))
 (setq org-todo-keywords
       '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "APPT(a)" "|" "DONE(d)" "CANCELLED(c)" "DEFERRED(f)")))
+(setq org-log-repeat nil)
 (setq org-log-into-drawer "LOGBOOK")
 
 ;; Habits
@@ -225,6 +226,11 @@
  '(
    ("s" "Someday" entry (file "~/Dropbox/org/someday.org")
     "* %i%?")
+   ("g" "Guitar")
+   ("gn" "New practice thing" entry (file "~/Dropbox/org/inbox.org")
+    (file "~/Dropbox/org/templates/guitar_new_practice_item.org"))
+   ("gp" "Practice log" entry (file "~/Dropbox/org/inbox.org")
+    (file "~/Dropbox/org/templates/guitar_practice_log.org"))
    ("l" "Language")
    ("lt" "Translation" entry (file "~/Dropbox/org/inbox.org")
     (file "~/Dropbox/org/templates/srs_review.org"))
