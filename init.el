@@ -30,7 +30,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (require 'php-mode)
-
+(require 'org-attach-screenshot)
 
 ;; ido, and adding the 'dot' lets you pick a directory.
 (ido-mode)
