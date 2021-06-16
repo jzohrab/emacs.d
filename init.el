@@ -318,9 +318,9 @@
                          (:name "Schedule (C-c g to refresh google cal data, then g)" :time-grid t :order 1)
                          (:name "Upcoming deadlines" :deadline future :order 100)
                          (:name "Money" :tag "money" :order 3)
-                         (:name "Guitarra (C-c a g)" :tag "guitar" :order 4)
-                         (:name "Español (C-c a p)" :tag "spanish" :order 5)
-                         (:name "Ejercicios (C-c a f)" :tag "fitness" :order 6)
+                         (:name "Ejercicios (C-c a f)" :tag "fitness" :order 4)
+                         (:name "Guitarra (C-c a g)" :tag "guitar" :order 5)
+                         (:name "Español (C-c a p)" :tag "spanish" :order 6)
                          (:name "Today (M-x org-revert-all-org-buffers to reload files)"
                                 :date t
                                 :scheduled today
