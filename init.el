@@ -200,9 +200,9 @@
 (setq org-journal-dir "~/Dropbox/org/journal/")
 (require 'org-journal)
 
-(setq org-tag-alist '(("@computer" . ?c) ("@phone" . ?p) ("@sherry" . ?s)))
+(setq org-tag-alist '(("MIT" . ?m)))
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "APPT(a)" "|" "DONE(d)" "CANCELLED(c)" "DEFERRED(f)")))
+      '((sequence "TODO(t)" "NEXT(n)" "CURRENT(c)" "WAITING(w)" "APPT(a)" "|" "DONE(d)" "CANCELLED(x)" "DEFERRED(f)")))
 (setq org-log-repeat nil)
 (setq org-log-into-drawer "LOGBOOK")
 
