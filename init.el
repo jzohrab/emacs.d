@@ -555,3 +555,15 @@
 (define-key mac-speak-keymap (vector ?s) 'mac-say-sentence)
 (define-key mac-speak-keymap (vector ?h) 'mac-speak/body)
 (global-set-key (kbd "\C-xr") 'mac-speak-keymap)
+
+
+;; line spacing?
+;; from https://www.reddit.com/r/emacs/comments/3hag14/line_spacing/
+(defun xah-toggle-line-spacing ()
+  "Toggle line spacing between no extra space to extra half line height."
+  (interactive)
+  (if (eq line-spacing nil)
+      (setq line-spacing 0.25)
+    (setq line-spacing nil)   ; no extra heigh between lines
+    )
+  (redraw-frame (selected-frame)))
