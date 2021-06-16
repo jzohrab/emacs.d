@@ -310,7 +310,7 @@
 		       ))
 
 	  (agenda "" ((org-agenda-span 'day)
-		      (org-agenda-overriding-header "\n======================\n")
+		      (org-agenda-overriding-header "\n======================\n(M-x org-revert-all-org-buffers to reload files)\n")
                       (org-super-agenda-groups
                        '(
 			 (:discard (:tag "hold"))
@@ -321,13 +321,13 @@
                          (:name "Ejercicios (C-c a f)" :tag "fitness" :order 4)
                          (:name "Guitarra (C-c a g)" :tag "guitar" :order 5)
                          (:name "Español (C-c a p)" :tag "spanish" :order 6)
-                         (:name "Today (M-x org-revert-all-org-buffers to reload files)"
+                         (:name "The rest"
                                 :date t
                                 :scheduled today
                                 :scheduled past
                                 :deadline today
                                 :deadline past
-                                :order 2)
+                                :order 7)
                          ))))
           (alltodo "" ((org-agenda-overriding-header "\n===================")
                        (org-super-agenda-groups
