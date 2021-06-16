@@ -395,9 +395,12 @@
 
 ;; Allow top-level refiling.  This is trickier using Helm,
 ;; see https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html
-(setq org-refile-use-outline-path 'file)
-(setq org-outline-path-complete-in-steps nil)
+(setq org-refile-targets '((nil :maxlevel . 9) (org-agenda-files :maxlevel . 9)))
+(setq org-outline-path-complete-in-steps nil)  ; Refile in a single go
+(setq org-refile-use-outline-path t)  ; Show full paths for refiling
 (setq org-refile-allow-creating-parent-nodes 'confirm)
+(setq org-refile-use-outline-path 'file)
+
 
 (setq org-refile-targets '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
                            ("~/Dropbox/org/guitar.org" :maxlevel . 3)
