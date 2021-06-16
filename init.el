@@ -252,13 +252,28 @@
 ;; Common agenda layout for major areas (guitar, spanish, fitness)
 (defun my-common-agenda-command (command description file)
   `(,command ,description
-	     ((agenda "" ((org-agenda-span 'day)
-			  (org-agenda-overriding-header ,description)
+	     (
+
+              (tags "drill" ((org-agenda-overriding-header "Drills")
+                       (org-super-agenda-groups
+                        '(
+                          (:discard (:scheduled future))
+                          (:name "Today"
+                                 :scheduled today
+                                 :scheduled past
+                                 :order 1)
+                          )
+                        )
+                       ))
+
+              (agenda "" ((org-agenda-span 'day)
+			  ;; (org-agenda-overriding-header ,description)
+                          (org-agenda-overriding-header "\n")
                       (org-super-agenda-groups
                        '(
-			 (:discard (:tag "hold"))
-			 (:auto-category t)
-                         (:name "Today (M-x org-revert-all-org-buffers to reload files)"
+                         (:discard (:tag "drill"))
+                         (:auto-category t)
+                         (:name "Today"
                                 :date t
                                 :scheduled today
                                 :scheduled past
@@ -266,12 +281,7 @@
                                 :deadline past
                                 :order 1)
                          ))))
-;;          (alltodo "" ((org-agenda-overriding-header "")
-;;                       (org-super-agenda-groups
-;;                        '((:name "Next"
-;;                                 :todo "NEXT"
-;;                                 :order 2)
-;;                          ))))
+
 	  )  ;; end of ((agenda ...
 	     ((org-agenda-files '(,file)))
 	     )
