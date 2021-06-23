@@ -203,7 +203,7 @@
 (setq org-tag-alist '(("MIT" . ?m)))
 (setq org-todo-keywords
       '((sequence "TODO(t)" "NEXT(n)" "CURRENT(c)" "WAITING(w)" "APPT(a)" "|" "DONE(d)" "CANCELLED(x)" "DEFERRED(f)")))
-(setq org-log-repeat nil)
+(setq org-log-repeat "time")
 (setq org-log-into-drawer "LOGBOOK")
 
 ;; Habits
@@ -303,8 +303,9 @@
           (tags "bigrock|MIT" ((org-agenda-overriding-header "Big Rocks and MITs")
                        (org-super-agenda-groups
                         '(
+                          (:discard (:scheduled future))
                           (:name "MITs" :tag "MIT" :order 2)
-                          (:name "Big rocks" :tag "bigrock" :order 1)
+                          (:name "Big rocks" :tag "bigrock"  :order 1)
                           )
 			)
 		       ))
@@ -412,14 +413,14 @@
 (setq org-refile-use-outline-path 'file)
 
 
-(setq org-refile-targets '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
-                           ("~/Dropbox/org/guitar.org" :maxlevel . 3)
-                           ("~/Dropbox/org/spanish.org" :maxlevel . 3)
-                           ("~/Dropbox/org/fitness.org" :maxlevel . 3)
-                           ("~/Dropbox/org/habits.org" :maxlevel . 3)
-                           ("~/Dropbox/org/someday.org" :maxlevel . 3)
-                           ("~/Dropbox/org/reference.org" :maxlevel . 3)
-                           ("~/Dropbox/org/tickler.org" :maxlevel . 3)))
+;; (setq org-refile-targets '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
+;;                            ("~/Dropbox/org/guitar.org" :maxlevel . 3)
+;;                            ("~/Dropbox/org/spanish.org" :maxlevel . 3)
+;;                            ("~/Dropbox/org/fitness.org" :maxlevel . 3)
+;;                            ("~/Dropbox/org/habits.org" :maxlevel . 3)
+;;                            ("~/Dropbox/org/someday.org" :maxlevel . 3)
+;;                            ("~/Dropbox/org/reference.org" :maxlevel . 3)
+;;                            ("~/Dropbox/org/tickler.org" :maxlevel . 3)))
 
 ;; ref https://orgmode.org/manual/TODO-dependencies.html
 ;; if project has the following, open TODOs block subsequent ones:
