@@ -218,6 +218,14 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
 
+;; Adding "effort" to the start of agenda items.
+;; https://emacs.stackexchange.com/questions/53272/
+;;    show-effort-and-clock-time-in-agenda-view
+(setq org-agenda-prefix-format
+      '((agenda . " %i %-12:c%?-12t%-6e% s")
+        (todo . " %i %-12:c %-6e")
+        (tags . " %i %-12:c")
+        (search . " %i %-12:c")))
 
 ;; Capture templates
 ;; ref https://www.reddit.com/r/emacs/comments/7zqc7b/share_your_org_capture_templates/
@@ -311,7 +319,13 @@
 		       ))
 
 	  (agenda "" ((org-agenda-span 'day)
-		      (org-agenda-overriding-header "\n======================\n(M-x org-revert-all-org-buffers to reload files)\n")
+		      (org-agenda-overriding-header "
+======================
+
+M-x org-revert-all-org-buffers to reload files
+C-c a : f Fitness / g Guitar / r RV
+
+")
                       (org-super-agenda-groups
                        '(
 			 (:discard (:tag "hold"))
@@ -319,10 +333,11 @@
                          (:name "Schedule (C-c g to refresh google cal data, then g)" :time-grid t :order 1)
                          (:name "Upcoming deadlines" :deadline future :order 100)
                          (:name "Money" :tag "money" :order 3)
-                         (:name "Ejercicios (C-c a f)" :tag "fitness" :order 4)
-                         (:name "Guitarra (C-c a g)" :tag "guitar" :order 5)
+                         ;; (:name "Ejercicios (C-c a f)" :tag "fitness" :order 4)
+                         ;; (:name "Guitarra (C-c a g)" :tag "guitar" :order 5)
                          (:name "Español (C-c a p)" :tag "spanish" :order 6)
                          (:name "The rest"
+                                :not (:tag "guitar")
                                 :date t
                                 :scheduled today
                                 :scheduled past
@@ -340,9 +355,9 @@
          ((org-agenda-files '("~/Dropbox/org/inbox.org"
                          "~/Dropbox/org/inbox-remote.org"
                          "~/Dropbox/org/gtd.org"
-                         "~/Dropbox/org/guitar.org"
+                         ;; "~/Dropbox/org/guitar.org"
                          "~/Dropbox/org/spanish.org"
-                         "~/Dropbox/org/fitness.org"
+                         ;; "~/Dropbox/org/fitness.org"
                          "~/Dropbox/org/habits.org"
                          "~/Dropbox/org/tickler.org"
                          "~/Dropbox/org/schedule.org") ))
@@ -360,6 +375,7 @@
 	,(my-common-agenda-command "g" "Guitar" "~/Dropbox/org/guitar.org")
 	,(my-common-agenda-command "p" "Spanish" "~/Dropbox/org/spanish.org")
 	,(my-common-agenda-command "f" "Fitness" "~/Dropbox/org/fitness.org")
+	,(my-common-agenda-command "r" "RV" "~/Dropbox/org/rv.org")
 
         )
       )
@@ -402,6 +418,8 @@
                          "~/Dropbox/org/fitness.org"
                          "~/Dropbox/org/habits.org"
                          "~/Dropbox/org/tickler.org"
+                         "~/Dropbox/org/reference.org"
+                         "~/Dropbox/org/someday.org"
                          "~/Dropbox/org/schedule.org"))
 
 ;; Allow top-level refiling.  This is trickier using Helm,
