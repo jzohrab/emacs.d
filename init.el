@@ -353,7 +353,6 @@ C-c a : f Fitness / g Guitar / r RV
                           ))))
 	  )
          ((org-agenda-files '("~/Dropbox/org/inbox.org"
-                         "~/Dropbox/org/inbox-remote.org"
                          "~/Dropbox/org/gtd.org"
                          ;; "~/Dropbox/org/guitar.org"
                          "~/Dropbox/org/spanish.org"
@@ -370,7 +369,7 @@ C-c a : f Fitness / g Guitar / r RV
 
 	("i" "Inbox"
          ((alltodo "" ((org-agenda-overriding-header "Inbox"))))
-         ((org-agenda-files '("~/Dropbox/org/inbox.org" "~/Dropbox/org/inbox-remote.org"))))
+         ((org-agenda-files '("~/Dropbox/org/inbox.org"))))
 
 	,(my-common-agenda-command "g" "Guitar" "~/Dropbox/org/guitar.org")
 	,(my-common-agenda-command "p" "Spanish" "~/Dropbox/org/spanish.org")
@@ -411,7 +410,6 @@ C-c a : f Fitness / g Guitar / r RV
 (setq org-agenda-show-all-dates t)
 
 (setq org-agenda-files '("~/Dropbox/org/inbox.org"
-                         "~/Dropbox/org/inbox-remote.org"
                          "~/Dropbox/org/gtd.org"
                          "~/Dropbox/org/guitar.org"
                          "~/Dropbox/org/spanish.org"
