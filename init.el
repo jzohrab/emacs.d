@@ -323,7 +323,7 @@
 ======================
 
 M-x org-revert-all-org-buffers to reload files
-C-c a : f Fitness / g Guitar / r RV
+C-c a : f Fitness / g Guitar
 
 ")
                       (org-super-agenda-groups
@@ -374,7 +374,6 @@ C-c a : f Fitness / g Guitar / r RV
 	,(my-common-agenda-command "g" "Guitar" "~/Dropbox/org/guitar.org")
 	,(my-common-agenda-command "p" "Spanish" "~/Dropbox/org/spanish.org")
 	,(my-common-agenda-command "f" "Fitness" "~/Dropbox/org/fitness.org")
-	,(my-common-agenda-command "r" "RV" "~/Dropbox/org/rv.org")
 
         )
       )
