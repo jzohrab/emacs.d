@@ -472,6 +472,29 @@ C-c a : f Fitness / g Guitar
    )
  )
 
+
+;; Clocking
+;; ref https://emacs.stackexchange.com/questions/30280/how-to-conveniently-insert-a-clock-entry
+(defun jz/insert-custom-clock-entry ()
+  (interactive)
+  (insert "CLOCK: ")
+  ;; Inserts the current time by default.
+  (let ((current-prefix-arg '(4))) (call-interactively 'org-time-stamp-inactive))
+  (insert "--")
+  ;; Inserts the current time by default.
+  (let ((current-prefix-arg '(4))) (call-interactively 'org-time-stamp-inactive))
+  (org-ctrl-c-ctrl-c))
+
+(global-set-key (kbd "C-c k") 'jz/insert-custom-clock-entry)
+
+
+;; report
+(fset 'update-report
+   (kmacro-lambda-form [?\C-x ?\C-f ?~ ?/ ?D ?r ?o ?p ?b ?o ?x ?/ ?o ?r ?g ?/ ?r ?e ?p ?o ?r ?t ?. ?o ?r ?g return (menu-bar) Org Show/Hide Show\ All ?\C-u ?\C-c ?\C-x ?\C-u] 0 "%d"))
+(global-set-key "\C-ct" 'update-report)
+
+
+
 ;;;;;;;;;;;;;;;;;
 ;; Javascript
 (setq js-indent-level 2)
