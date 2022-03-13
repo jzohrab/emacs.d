@@ -5,11 +5,12 @@
  ;; If there is more than one, they won't work right.
  '(doc-view-continuous t)
  '(org-adapt-indentation nil)
+ '(org-agenda-span 'month)
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(org-modules
    '(ol-bbdb ol-bibtex ol-docview ol-gnus org-habit ol-info ol-irc ol-mhe ol-rmail ol-w3m))
  '(package-selected-packages
-   '(yaml-mode typescript-mode org doom-themes treemacs-persp treemacs-magit treemacs-icons-dired treemacs-projectile use-package treemacs magit org-gcal org-journal org-super-agenda helm)))
+   '(rbenv rvm htmlize yaml-mode typescript-mode org doom-themes treemacs-persp treemacs-magit treemacs-icons-dired treemacs-projectile use-package treemacs magit org-gcal org-journal org-super-agenda helm)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -499,6 +500,15 @@ C-c a : f Fitness / g Guitar
 ;; Javascript
 (setq js-indent-level 2)
 (setq-default indent-tabs-mode nil)
+
+;;;;;;;;;;;;;;;;;;
+;; Ruby -- figuring out the mess.
+;; (require 'rvm)
+;; (rvm-use-default) ;; use rvm's default ruby for the current Emacs session
+
+(require 'rbenv)
+(global-rbenv-mode)
+(setq rbenv-installation-dir "/.rbenv")
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
