@@ -203,7 +203,7 @@
 (setq org-tag-alist '(("MIT" . ?m)))
 (setq org-todo-keywords
       '((sequence "TODO(t)" "NEXT(n)" "CURRENT(c)" "WAITING(w)" "APPT(a)" "|" "DONE(d)" "CANCELLED(x)" "DEFERRED(f)")))
-(setq org-log-repeat "time")
+(setq org-log-repeat nil)
 (setq org-log-into-drawer "LOGBOOK")
 
 ;; Habits
@@ -374,7 +374,6 @@ C-c a : f Fitness / g Guitar
 	,(my-common-agenda-command "g" "Guitar" "~/Dropbox/org/guitar.org")
 	,(my-common-agenda-command "p" "Spanish" "~/Dropbox/org/spanish.org")
 	,(my-common-agenda-command "f" "Fitness" "~/Dropbox/org/fitness.org")
-
         )
       )
 ;; eval the above: C-x C-e
