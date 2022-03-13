@@ -557,7 +557,7 @@ C-c a : f Fitness / g Guitar
 ;; Note hydra is installed with treemacs.
 ;; Load the head of the hydra with C-x r h, then s-s-s to speak each sentence.
 
-(defvar words-voice "Daniel" "Mac voice to use for speaking.")
+(defvar words-voice "Jorge" "Mac voice to use for speaking.")
 
 (defun words-speak (&optional text)
   "Speak word at point or region. Mac only."
@@ -572,7 +572,7 @@ C-c a : f Fitness / g Guitar
   (setq text (replace-regexp-in-string "\"" "\\\\\"" text))
   (do-applescript
    (format
-    "say \"%s\" using \"Daniel\""
+    "say \"%s\" using \"Jorge\""
     text
     words-voice)))
 
@@ -602,10 +602,10 @@ C-c a : f Fitness / g Guitar
   ("n" (my-org-capture-todo) "Make a note")
   )
 
-(define-prefix-command 'mac-speak-keymap)
-(define-key mac-speak-keymap (vector ?s) 'mac-say-sentence)
-(define-key mac-speak-keymap (vector ?h) 'mac-speak/body)
-(global-set-key (kbd "\C-xr") 'mac-speak-keymap)
+;; (define-prefix-command 'mac-speak-keymap)
+;; (define-key mac-speak-keymap (vector ?s) 'mac-say-sentence)
+;; (define-key mac-speak-keymap (vector ?h) 'mac-speak/body)
+;; (global-set-key (kbd "\C-xr") 'mac-speak-keymap)
 
 
 ;; line spacing?
