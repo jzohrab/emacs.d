@@ -336,7 +336,7 @@ C-c a : f Fitness / g Guitar
                          (:name "Money" :tag "money" :order 3)
                          ;; (:name "Ejercicios (C-c a f)" :tag "fitness" :order 4)
                          ;; (:name "Guitarra (C-c a g)" :tag "guitar" :order 5)
-                         (:name "Español (C-c a p)" :tag "spanish" :order 6)
+                         ;; (:name "Español (C-c a p)" :tag "spanish" :order 6)
                          (:name "The rest"
                                 :not (:tag "guitar")
                                 :date t
@@ -356,7 +356,7 @@ C-c a : f Fitness / g Guitar
          ((org-agenda-files '("~/Dropbox/org/inbox.org"
                          "~/Dropbox/org/gtd.org"
                          ;; "~/Dropbox/org/guitar.org"
-                         "~/Dropbox/org/spanish.org"
+                         ;; "~/Dropbox/org/spanish.org"
                          ;; "~/Dropbox/org/fitness.org"
                          "~/Dropbox/org/habits.org"
                          "~/Dropbox/org/tickler.org"
