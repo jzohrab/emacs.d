@@ -18,6 +18,7 @@
  ;; If there is more than one, they won't work right.
  '(org-tag ((t (:foreground "green4" :weight bold)))))
 
+
 ;; Start emacsclient so opening other text files via Finder
 ;; runs in same emacs session.
 (server-start)
@@ -106,7 +107,7 @@
           treemacs-tag-follow-cleanup            t
           treemacs-tag-follow-delay              1.5
           treemacs-user-mode-line-format         nil
-          treemacs-width                         35)
+          treemacs-width                         20)
 
     ;; The default width and height of the icons is 22 pixels. If you are
     ;; using a Hi-DPI display, uncomment this to double the icon size.
@@ -454,14 +455,6 @@ C-c a : f Fitness / g Guitar
 ;; https://orgmode.org/worg/org-contrib/org-checklist.html
 (require 'org-checklist)
 
-(setq initial-buffer-choice
-      (lambda ()
-        (org-agenda nil "z")
-        (delete-other-windows)
-        (get-buffer "*Org Agenda*")
-        )
-      )
-
 
 (setq org-confirm-babel-evaluate nil)
 (setq org-confirm-shell-link-function nil)
@@ -628,3 +621,34 @@ C-c a : f Fitness / g Guitar
     (setq line-spacing nil)   ; no extra heigh between lines
     )
   (redraw-frame (selected-frame)))
+
+
+;; No tool bar.
+;; http://kb.mit.edu/confluence/display/istcontrib/Disabling+the+Emacs+menubar%2C+toolbar%2C+or+scrollbar
+(tool-bar-mode -1)
+
+;; Default font size.  Height = 10 x pts, so 180 = 18 pt.
+(set-face-attribute 'default nil :height 180)
+
+
+;; STARTUP SCREENS
+;; Open org agenda as first screen.
+;; (setq initial-buffer-choice
+;;       (lambda ()
+;;         (org-agenda nil "z")
+;;         (delete-other-windows)
+;;         (get-buffer "*Org Agenda*")
+;;         )
+;;       )
+
+(setq-default inhibit-startup-screen t)
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-message t)
+(setq initial-scratch-message "")
+
+
+;; Positioning
+;; https://emacs.stackexchange.com/questions/2269/how-do-i-get-my-initial-frame-to-be-the-desired-size
+(when window-system
+  (set-frame-position (selected-frame) 10 0)
+  (set-frame-size (selected-frame) 120 40))
