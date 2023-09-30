@@ -10,7 +10,9 @@
  '(org-modules
    '(ol-bbdb ol-bibtex ol-docview ol-gnus org-habit ol-info ol-irc ol-mhe ol-rmail ol-w3m))
  '(package-selected-packages
-   '(rbenv rvm htmlize yaml-mode typescript-mode org doom-themes treemacs-persp treemacs-magit treemacs-icons-dired treemacs-projectile use-package treemacs magit org-gcal org-journal org-super-agenda helm)))
+   '(org-tree-slide rbenv rvm htmlize yaml-mode typescript-mode org doom-themes treemacs-persp treemacs-magit treemacs-icons-dired treemacs-projectile use-package treemacs magit org-gcal org-journal org-super-agenda helm)))
+
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -34,11 +36,20 @@
 (require 'php-mode)
 (require 'org-attach-screenshot)
 
-;; ido, and adding the 'dot' lets you pick a directory.
-(ido-mode)
-(setq ido-show-dot-for-dired t)
+;; ;; ido, and adding the 'dot' lets you pick a directory.
+;; (ido-mode)
+;; (setq ido-show-dot-for-dired t)
 
 (require 'use-package)
+
+;; https://github.com/takaxp/org-tree-slide
+;; start and stop with M-x org-tree-slide-mode,
+;; fn-f9 and fn-f10 to move prev and next.
+(require 'org-tree-slide)
+(with-eval-after-load "org-tree-slide"
+  (define-key org-tree-slide-mode-map (kbd "<f9>") 'org-tree-slide-move-previous-tree)
+  (define-key org-tree-slide-mode-map (kbd "<f10>") 'org-tree-slide-move-next-tree)
+  )
 
 ;; ;; ;;;;;;;;;;;;;;;;;;;;;
 ;; DOOM THEME
@@ -224,7 +235,7 @@
 ;; https://emacs.stackexchange.com/questions/53272/
 ;;    show-effort-and-clock-time-in-agenda-view
 (setq org-agenda-prefix-format
-      '((agenda . " %i %-12:c%?-12t%-6e% s")
+      '((agenda . "%-6e")
         (todo . " %i %-12:c %-6e")
         (tags . " %i %-12:c")
         (search . " %i %-12:c")))
@@ -251,8 +262,14 @@
    ("r" "Reviews")
    ("rd" "Daily" entry (file "~/Dropbox/org/daily_reviews.org")
     (file "~/Dropbox/org/templates/daily_review.org"))
+   ("w" "Log Workout")
+   ("wg" "General" entry (file+datetree+prompt "~/Dropbox/org/workout.org") "* %?")
+   ("wh" "Hang" entry (file+datetree+prompt "~/Dropbox/org/workout.org") "* hanging: %?")
+   ("wp" "Pushups" entry (file+datetree+prompt "~/Dropbox/org/workout.org") "* pushups: %?")
+   ("ws" "Primal squat" entry (file+datetree+prompt "~/Dropbox/org/workout.org") "* primal squat: %?")
    )
-)
+ )
+;; C-x e to evaluate the above
 
 ;; org-super-agenda
 (require 'org-super-agenda)
@@ -264,24 +281,11 @@
   `(,command ,description
 	     (
 
-              (tags "drill" ((org-agenda-overriding-header "Drills")
-                       (org-super-agenda-groups
-                        '(
-                          (:discard (:scheduled future))
-                          (:name "Today"
-                                 :scheduled today
-                                 :scheduled past
-                                 :order 1)
-                          )
-                        )
-                       ))
-
               (agenda "" ((org-agenda-span 'day)
 			  ;; (org-agenda-overriding-header ,description)
                           (org-agenda-overriding-header "\n")
                       (org-super-agenda-groups
                        '(
-                         (:discard (:tag "drill"))
                          (:auto-category t)
                          (:name "Today"
                                 :date t
@@ -396,6 +400,14 @@ C-c a : f Fitness / g Guitar
 ;; bind
 (define-key global-map (kbd "C-t") 'my-org-capture-todo)
 
+;; mobile, per https://mobileorg.github.io/documentation/#using-dropbox
+;; Set to the location of your Org files on your local system
+(setq org-directory "~/Dropbox/org")
+;; Set to the name of the file where new notes will be stored
+(setq org-mobile-inbox-for-pull "~/Dropbox/org/flagged.org")
+;; Set to <your Dropbox root directory>/MobileOrg.
+(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+
 ;; Tried styling per https://zzamboni.org/post/beautifying-org-mode-in-emacs/,
 ;; didn't care for it though.
 
@@ -453,7 +465,7 @@ C-c a : f Fitness / g Guitar
 
 ;; Resetting checkboxes when done
 ;; https://orgmode.org/worg/org-contrib/org-checklist.html
-(require 'org-checklist)
+;; (require 'org-checklist) ;; macro failure on emacs 29
 
 
 (setq org-confirm-babel-evaluate nil)
@@ -465,6 +477,11 @@ C-c a : f Fitness / g Guitar
    (shell . t)
    )
  )
+
+;; ref https://stackoverflow.com/questions/57828900/bulk-reschedule-org-agenda-items-preserving-date
+(setq org-agenda-bulk-custom-functions
+      `((?D (lambda () (call-interactively 'org-agenda-date-later)))
+        ,@org-agenda-bulk-custom-functions))
 
 
 ;; Clocking
@@ -628,7 +645,7 @@ C-c a : f Fitness / g Guitar
 (tool-bar-mode -1)
 
 ;; Default font size.  Height = 10 x pts, so 180 = 18 pt.
-(set-face-attribute 'default nil :height 180)
+(set-face-attribute 'default nil :height 160)
 
 
 ;; STARTUP SCREENS
