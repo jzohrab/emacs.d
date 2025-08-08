@@ -10,7 +10,7 @@
  '(org-modules
    '(ol-bbdb ol-bibtex ol-docview ol-gnus org-habit ol-info ol-irc ol-mhe ol-rmail ol-w3m))
  '(package-selected-packages
-   '(org-tree-slide rbenv rvm htmlize yaml-mode typescript-mode org doom-themes treemacs-persp treemacs-magit treemacs-icons-dired treemacs-projectile use-package treemacs magit org-gcal org-journal org-super-agenda helm)))
+   '(org-drill org-tree-slide rbenv rvm htmlize yaml-mode typescript-mode org doom-themes treemacs-persp treemacs-magit treemacs-icons-dired treemacs-projectile use-package treemacs magit org-gcal org-journal org-super-agenda helm)))
 
 
 (custom-set-faces
@@ -29,7 +29,7 @@
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
-(require 'helm-config)
+;; (require 'helm-config)
 (helm-mode 1)
 
 (add-to-list 'load-path "~/.emacs.d/lisp/")
@@ -165,6 +165,16 @@
    :config (treemacs-set-scope-type 'Perspectives))
 
 
+;; Ignore pycache cruft - https://github.com/Alexander-Miller/treemacs#faq
+(with-eval-after-load 'treemacs
+
+  (defun treemacs-ignore-example (filename absolute-path)
+    (or (string-equal filename "__pycache__")
+        (string-prefix-p "/x/y/z/" absolute-path)))
+
+  (add-to-list 'treemacs-ignored-file-predicates #'treemacs-ignore-example))
+
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; js
 ;; https://stackoverflow.com/questions/4177929/how-to-change-the-indentation-width-in-emacs-javascript-mode
@@ -271,6 +281,8 @@
  )
 ;; C-x e to evaluate the above
 
+(require 'org-drill)
+
 ;; org-super-agenda
 (require 'org-super-agenda)
 (org-super-agenda-mode)
@@ -351,16 +363,16 @@ C-c a : f Fitness / g Guitar
                                 :deadline past
                                 :order 7)
                          ))))
-          (alltodo "" ((org-agenda-overriding-header "\n===================")
-                       (org-super-agenda-groups
-                        '(
-                          (:name "Waiting" :todo "WAITING" :order 2)
-                          (:name "Next actions" :todo "NEXT" :order 3)
-                          ))))
+          ;; (alltodo "" ((org-agenda-overriding-header "\n===================")
+          ;;              (org-super-agenda-groups
+          ;;               '(
+          ;;                 (:name "Waiting" :todo "WAITING" :order 2)
+          ;;                 (:name "Next actions" :todo "NEXT" :order 3)
+          ;;                 ))))
 	  )
          ((org-agenda-files '("~/Dropbox/org/inbox.org"
                          "~/Dropbox/org/gtd.org"
-                         ;; "~/Dropbox/org/guitar.org"
+                         "~/Dropbox/org/guitar.org"
                          ;; "~/Dropbox/org/spanish.org"
                          ;; "~/Dropbox/org/fitness.org"
                          "~/Dropbox/org/habits.org"
@@ -424,13 +436,14 @@ C-c a : f Fitness / g Guitar
 (setq org-agenda-files '("~/Dropbox/org/inbox.org"
                          "~/Dropbox/org/gtd.org"
                          "~/Dropbox/org/guitar.org"
-                         "~/Dropbox/org/spanish.org"
+;;                         "~/Dropbox/org/spanish.org"
                          "~/Dropbox/org/fitness.org"
                          "~/Dropbox/org/habits.org"
                          "~/Dropbox/org/tickler.org"
                          "~/Dropbox/org/reference.org"
                          "~/Dropbox/org/someday.org"
-                         "~/Dropbox/org/schedule.org"))
+                         "~/Dropbox/org/schedule.org"
+                         ))
 
 ;; Allow top-level refiling.  This is trickier using Helm,
 ;; see https://blog.aaronbieber.com/2017/03/19/organizing-notes-with-refile.html
@@ -440,15 +453,6 @@ C-c a : f Fitness / g Guitar
 (setq org-refile-allow-creating-parent-nodes 'confirm)
 (setq org-refile-use-outline-path 'file)
 
-
-;; (setq org-refile-targets '(("~/Dropbox/org/gtd.org" :maxlevel . 3)
-;;                            ("~/Dropbox/org/guitar.org" :maxlevel . 3)
-;;                            ("~/Dropbox/org/spanish.org" :maxlevel . 3)
-;;                            ("~/Dropbox/org/fitness.org" :maxlevel . 3)
-;;                            ("~/Dropbox/org/habits.org" :maxlevel . 3)
-;;                            ("~/Dropbox/org/someday.org" :maxlevel . 3)
-;;                            ("~/Dropbox/org/reference.org" :maxlevel . 3)
-;;                            ("~/Dropbox/org/tickler.org" :maxlevel . 3)))
 
 ;; ref https://orgmode.org/manual/TODO-dependencies.html
 ;; if project has the following, open TODOs block subsequent ones:
@@ -504,6 +508,17 @@ C-c a : f Fitness / g Guitar
    (kmacro-lambda-form [?\C-x ?\C-f ?~ ?/ ?D ?r ?o ?p ?b ?o ?x ?/ ?o ?r ?g ?/ ?r ?e ?p ?o ?r ?t ?. ?o ?r ?g return (menu-bar) Org Show/Hide Show\ All ?\C-u ?\C-c ?\C-x ?\C-u] 0 "%d"))
 (global-set-key "\C-ct" 'update-report)
 
+
+;; image sizing
+;; https://stackoverflow.com/questions/11670654/how-to-resize-images-in-org-mode
+(setq org-image-actual-width nil)
+
+(defun my-org-random-sort ()
+  (random 1000))
+
+(defun shuffle-licks ()
+  (interactive)
+  (org-sort-entries nil ?f 'my-org-random-sort))
 
 
 ;;;;;;;;;;;;;;;;;
