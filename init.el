@@ -26,8 +26,16 @@
 (server-start)
 
 (require 'package)
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(setq package-archives
+      '(("gnu"   . "https://elpa.gnu.org/packages/")
+        ("melpa-stable" . "https://stable.melpa.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")))
+
 (package-initialize)
+
+;; Prefer stable, except for org-gcal
+(add-to-list 'package-pinned-packages '(org-gcal . "melpa"))
+
 
 ;; (require 'helm-config)
 (helm-mode 1)
@@ -188,6 +196,7 @@
 ;; Manually sync the calendar with C-cg 
 
 (require 'org-gcal)
+(setq org-gcal-debug t)
 
 ;; Storing my creds in a secret file so I don't commit them here.
 (require 'json)
@@ -200,12 +209,13 @@
       org-gcal-client-secret (get-gcal-config-value 'org-gcal-client-secret)
       org-gcal-file-alist '(("jzohrab@gmail.com" . "~/Dropbox/org/schedule.org")))
 
+(setq org-gcal-up-days 90     ;; future
+      org-gcal-down-days 30)  ;; past
+
 (defun jz/org-gcal-sync ()
-  "Replace existing schedule file with blank, and then resync"
+  "Replace existing schedule file with blank, and then resync."
   (interactive)
-  (write-region "" nil "~/Dropbox/org/schedule.org")
-  (org-gcal-sync)
-  )
+  (org-gcal-sync))
 
 (global-set-key "\C-cg" 'jz/org-gcal-sync)
 
@@ -247,7 +257,7 @@
 (setq org-agenda-prefix-format
       '((agenda . "%-6e")
         (todo . " %i %-12:c %-6e")
-        (tags . " %i %-12:c")
+        (tags . " %i %-12:c %-6e")
         (search . " %i %-12:c")))
 
 ;; Capture templates
@@ -337,16 +347,12 @@
 		       ))
 
 	  (agenda "" ((org-agenda-span 'day)
-		      (org-agenda-overriding-header "
-======================
-
-M-x org-revert-all-org-buffers to reload files
-C-c a : f Fitness / g Guitar
-
-")
+		      (org-agenda-overriding-header "M-x org-revert-all-org-buffers to reload files
+C-c a : f Fitness / g Guitar")
                       (org-super-agenda-groups
                        '(
 			 (:discard (:tag "hold"))
+                         ;; (:name "Next actions" :todo "NEXT" :order 0)
 			 (:name "MITs" :tag "MIT" :order 0)
                          (:name "Schedule (C-c g to refresh google cal data, then g)" :time-grid t :order 1)
                          (:name "Upcoming deadlines" :deadline future :order 100)
@@ -354,7 +360,7 @@ C-c a : f Fitness / g Guitar
                          ;; (:name "Ejercicios (C-c a f)" :tag "fitness" :order 4)
                          ;; (:name "Guitarra (C-c a g)" :tag "guitar" :order 5)
                          ;; (:name "Español (C-c a p)" :tag "spanish" :order 6)
-                         (:name "The rest"
+                         (:name "Scheduled or with deadline"
                                 :not (:tag "guitar")
                                 :date t
                                 :scheduled today
@@ -363,6 +369,11 @@ C-c a : f Fitness / g Guitar
                                 :deadline past
                                 :order 7)
                          ))))
+          (todo "NEXT"
+                ((org-agenda-overriding-header "Next actions")))
+          ;; (alltodo "" ((org-agenda-overriding-header "Next actions")
+          ;;             (org-super-agenda-groups
+          ;;              '((:name "Next actions" :todo "NEXT")))))
           ;; (alltodo "" ((org-agenda-overriding-header "\n===================")
           ;;              (org-super-agenda-groups
           ;;               '(
@@ -396,8 +407,8 @@ C-c a : f Fitness / g Guitar
       )
 ;; eval the above: C-x C-e
 
-;; (setq org-agenda-block-separator "--------\n")
-(setq org-agenda-block-separator nil)
+(setq org-agenda-block-separator "--------\n")
+;; (setq org-agenda-block-separator nil)
 (setq org-agenda-compact-blocks nil)
 
 
@@ -466,6 +477,7 @@ C-c a : f Fitness / g Guitar
 (setq org-ellipsis " ▼")
 (setq org-tags-column 0)
 (setq org-agenda-skip-scheduled-if-done t)
+(setq org-agenda-tags-column 2)
 
 ;; Resetting checkboxes when done
 ;; https://orgmode.org/worg/org-contrib/org-checklist.html
@@ -503,10 +515,10 @@ C-c a : f Fitness / g Guitar
 (global-set-key (kbd "C-c k") 'jz/insert-custom-clock-entry)
 
 
-;; report
-(fset 'update-report
-   (kmacro-lambda-form [?\C-x ?\C-f ?~ ?/ ?D ?r ?o ?p ?b ?o ?x ?/ ?o ?r ?g ?/ ?r ?e ?p ?o ?r ?t ?. ?o ?r ?g return (menu-bar) Org Show/Hide Show\ All ?\C-u ?\C-c ?\C-x ?\C-u] 0 "%d"))
-(global-set-key "\C-ct" 'update-report)
+;; ;; report
+;; (fset 'update-report
+;;    (kmacro-lambda-form [?\C-x ?\C-f ?~ ?/ ?D ?r ?o ?p ?b ?o ?x ?/ ?o ?r ?g ?/ ?r ?e ?p ?o ?r ?t ?. ?o ?r ?g return (menu-bar) Org Show/Hide Show\ All ?\C-u ?\C-c ?\C-x ?\C-u] 0 "%d"))
+;; (global-set-key "\C-ct" 'update-report)
 
 
 ;; image sizing
